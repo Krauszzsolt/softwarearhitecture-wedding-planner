@@ -11,8 +11,8 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'caff',
-        loadChildren: () => import('./../feature/caff/caff.module').then((m) => m.CaffModule),
+        path: 'task',
+        loadChildren: () => import('./../feature/task/task.module').then((m) => m.TaskModule),
         canActivate: [AuthGuard]
       },
       {
