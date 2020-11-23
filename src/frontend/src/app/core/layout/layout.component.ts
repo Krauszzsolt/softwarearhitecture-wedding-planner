@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TaskService } from 'src/app/feature/task/service/task.service';
+import { MyTaskService } from 'src/app/feature/task/service/my-task.service';
 import { ApplicationUserDto } from 'src/app/shared/client';
 import { AuthService } from '../service/auth.service';
 
@@ -10,7 +10,7 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor(private authService: AuthService, private taskService: TaskService) {}
+  constructor(private authService: AuthService, private taskService: MyTaskService) {}
   public user: Observable<ApplicationUserDto> = new Observable();
   public showFiller = false;
   public search = '';
