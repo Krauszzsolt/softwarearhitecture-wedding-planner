@@ -1,5 +1,6 @@
 ﻿using DAL.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace BLL.DTOs
 {
@@ -31,5 +32,7 @@ namespace BLL.DTOs
         public string BethrothedTwo { get; set; }
 
         public DateTime Date { get; set; }
+
+        public List<TaskGroupDto> TaskGroups { get; set; }
     }
 }
