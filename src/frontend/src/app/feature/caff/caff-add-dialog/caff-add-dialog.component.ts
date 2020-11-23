@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AnimationsService } from 'src/app/shared/client';
 
 @Component({
   selector: 'app-caff-add-dialog',
@@ -15,7 +14,6 @@ export class CaffAddDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<CaffAddDialogComponent>,
     private formBuilder: FormBuilder,
     private router: Router,
-    private animationsService: AnimationsService
   ) // private tagsService: TagsService
   {}
 
@@ -90,15 +88,14 @@ export class CaffAddDialogComponent implements OnInit {
     }
 
     this.loading = true;
-    //this.editService.editNewstoryPost({ title: this.f.title.value, description: this.f.description.value, tags: this.f.tags.value.map(x => <TagDto>{ value: x })})
-    this.animationsService.animationsAddPost(this.f.title.value, this.f.coverImageSource.value).subscribe({
-      next: () => {
-        this.dialogRef.close();
-      },
-      error: (error) => {
-        this.error = error;
-        this.loading = false;
-      },
-    });
+    // this.animationsService.animationsAddPost(this.f.title.value, this.f.coverImageSource.value).subscribe({
+    //   next: () => {
+    //     this.dialogRef.close();
+    //   },
+    //   error: (error) => {
+    //     this.error = error;
+    //     this.loading = false;
+    //   },
+    // });
   }
 }

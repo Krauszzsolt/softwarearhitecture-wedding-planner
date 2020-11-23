@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { debounceTime, shareReplay } from 'rxjs/operators';
-import { AnimationDto, AnimationsService, CommentDto } from 'src/app/shared/client';
 
 @Injectable({
   providedIn: 'root',
