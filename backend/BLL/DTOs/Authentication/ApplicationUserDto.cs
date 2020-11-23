@@ -14,11 +14,14 @@ namespace BLL.DTOs.Authentication
         {
             Id = applicationUser.Id;
             UserName = applicationUser.UserName;
+            WeddingId = applicationUser.WeddingId;
         }
 
         public string Id { get; set; }
 
         public string UserName { get; set; }
+
+        public long? WeddingId { get; set; }
 
         public string Token { get; set; }
 
