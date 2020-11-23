@@ -4,14 +4,16 @@ using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201123133452_WeddingsAndTasks")]
+    partial class WeddingsAndTasks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,28 +215,6 @@ namespace DAL.Data.Migrations
                     b.HasIndex("WeddingId");
 
                     b.ToTable("TaskGroups");
-                });
-
-            modelBuilder.Entity("DAL.Entities.TaskGroupHierarchy", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("RequiredId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("TaskGroupId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RequiredId");
-
-                    b.HasIndex("TaskGroupId");
-
-                    b.ToTable("TaskGroupHierarchy");
                 });
 
             modelBuilder.Entity("DAL.Entities.Wedding", b =>
@@ -444,21 +424,6 @@ namespace DAL.Data.Migrations
                         .WithMany("TaskGroups")
                         .HasForeignKey("WeddingId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("DAL.Entities.TaskGroupHierarchy", b =>
-                {
-                    b.HasOne("DAL.Entities.TaskGroup", "Required")
-                        .WithMany("After")
-                        .HasForeignKey("RequiredId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("DAL.Entities.TaskGroup", "TaskGroup")
-                        .WithMany("Before")
-                        .HasForeignKey("TaskGroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
