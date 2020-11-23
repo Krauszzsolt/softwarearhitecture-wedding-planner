@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20201123132648_WeddingsAndTasks.cs" />
+    <Compile Remove="Data\Migrations\20201123132648_WeddingsAndTasks.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201123133354_WeddingsAndTasks.cs" />
+    <Compile Remove="Data\Migrations\20201123133354_WeddingsAndTasks.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201123135857_TaskGroupHierarchy.cs" />
+    <Compile Remove="Data\Migrations\20201123135857_TaskGroupHierarchy.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201123140442_TaskGroupHierarchy.cs" />
+    <Compile Remove="Data\Migrations\20201123140442_TaskGroupHierarchy.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="3.1.9" />
+  </ItemGroup>
+
+</Project>
