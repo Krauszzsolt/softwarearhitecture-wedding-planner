@@ -6,7 +6,7 @@ import { CreateWeddingComponent } from './create-wedding/create-wedding.componen
 const routes: Routes = [ {
   path: '',
   component: CreateWeddingComponent,
-  canActivate: [AuthGuard],
+  // canActivate: [AuthGuard],
 },];
 
 @NgModule({

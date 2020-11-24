@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { WeddingGuard } from './guards/wedding.guard';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -23,7 +24,7 @@ const routes: Routes = [
       {
         path: 'wedding',
         loadChildren: () => import('./../feature/wedding/wedding.module').then((m) => m.WeddingModule),
-        canActivate: [AuthGuard]
+        canActivate: [WeddingGuard]
       },
       {
         path: 'login',

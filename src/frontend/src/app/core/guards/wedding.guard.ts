@@ -4,17 +4,14 @@ import { AuthService } from '../service/auth.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
+export class WeddingGuard implements CanActivate {
 
     constructor(private router: Router, private authService: AuthService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const currentUser = {weddingId :  'asd'}//this.authService.currentUserValue;
-        if (true) {
-            if(!currentUser.weddingId){
-                this.router.navigate(['/wedding'], { queryParams: { returnUrl: state.url } });
-                return false;
-            }
+        if (currentUser) {
+
             return true;
         }
 
