@@ -1,28 +1,46 @@
-<div class="container">
-  <h1>Task detail</h1>
-  <img src="../../../assets/caff-icon-o.png" alt="icon">
-
-  <div class="comments">
-    <div class="row">
-      <input matInput placeholder="New comment" class="title-input" value="">
-      <button mat-button class="comment-button">Comment</button>
-    </div>
-    <div>Comment1</div>
-    <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-    recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    <span>/Lala/</span>
-    </div>
-    <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-    recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    <span>/Zsolti/</span>
-    </div>
-    <div>Comment4</div>
-    <div>Comment5</div>
-  </div>
+<div fxLayout="row" fxLayoutAlign="center">
+  <h2>New task</h2>
 </div>
+<div class="row" fxLayoutAlign="center">
+  <h4>Wedding tasks decreption</h4>
+</div>
+<mat-card-content>
+  <form [formGroup]="newStoryForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="column">
+      <!-- <div fxLayout="column">      
+        <button mat-raised-button (click)="fileInput.click()" type="button">Choose File</button>
+        <input hidden type="file" #fileInput (change)="onFileChange($event)" />
+      </div> -->
+
+      <div class="comments">
+        <div>Comment1</div>
+        <div>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+          printer took a galley of type and scrambled it to make a type specimen book.
+          <span>/Lala/</span>
+        </div>
+        <div>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+          printer took a galley of type and scrambled it to make a type specimen book.
+          <span>/Zsolti/</span>
+        </div>
+        <div>Comment4</div>
+        <div>Comment5</div>
+      </div>
+      <div fxLayout="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Comment</mat-label>
+
+          <textarea formControlName="desreption" matInput placeholder="Ex. It makes me feel..."></textarea>
+          <mat-error *ngIf="f.title.errors && f.title.errors.required">Title is required </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center"></div>
+      <button mat-flat-button>Comment</button>
+      <div fxLayout="row" fxLayoutAlign="space-around">
+        <button *ngIf="!loading" [disabled]="loading" mat-flat-button color="primary">Delete</button>
+        <button *ngIf="!loading" [disabled]="loading" mat-flat-button color="primary">Complete</button>
+      </div>
+    </div>
+  </form>
+</mat-card-content>

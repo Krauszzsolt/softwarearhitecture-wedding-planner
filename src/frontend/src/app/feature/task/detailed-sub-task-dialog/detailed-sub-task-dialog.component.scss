@@ -1,37 +1,45 @@
-@import "../../../app.component.scss";
+@import 'bulma/css/bulma.min.css';
+@import '../../../app.component.scss';
 
-.container{
-    margin-left: 15vw;
-    margin-right: 15vw;
-    @media screen and (max-width: 765px) {
-        margin-left: 1vw;
-        margin-right: 1vw;
+h1 {
+  font-size: 1.5rem;
+}
+.mat-card-content {
+  min-height: 40vh;
+  height: auto;
+  width: 25vw;
+  .title-input {
+    font-size: 1.2rem;
+    padding: 2rem 0;
+  }
+}
+
+.side-buffer {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+
+.mat-card-content{
+  div{
+    padding: 0.5rem;
+  }
+  button{
+    background-color: $orange;
+  }
+}
+
+::ng-deep .mat-form-field.mat-focused {
+    .mat-form-field-label {
+        color: $orange;
     }
-    img{
-        width: 100%;
-        max-height: 80vh;
-        object-fit: cover;
+    .mat-form-field-ripple {
+        background-color: $orange;
     }
-    .comments{
-        .row{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            button{
-                color: $white;
-                background: $dark-grey-3;
-            }
-        }
-        div{
-            padding: 1rem;
-            border: 1px solid $dark-grey-3;
-        }
-        width: 100%;
-        line-height: normal;
-        background: $dark-grey-2;
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
+    .mat-form-field-required-marker {
+        color:$orange;
+    }
+    .mat-input-element {
         color: $white;
     }
-
 }
