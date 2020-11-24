@@ -1,3 +1,21 @@
-<p>
-  sub-task-list works!
-</p>
+<div class="container">
+  <div class="row">
+    <h1>Wedding tasks</h1>
+  </div>
+
+  <div class="row">
+    <mat-card (click)="mainTaskSelect()">
+      <!-- <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon"> -->
+      <mat-card-title class="title">
+        Title one
+
+        <!-- Admin flehanszáló esetén -->
+      </mat-card-title>
+    </mat-card>
+  </div>
+</div>
+<div class="button-container">
+  <button (click)="openSubTaskDialog()"  mat-fab color="warn">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

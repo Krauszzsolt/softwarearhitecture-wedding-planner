@@ -7,9 +7,9 @@
   <!-- Bejelentkezett felhasználó esetén -->
   <mat-search-bar  [(ngModel)]="search" (keyup)='searchEvetn()'></mat-search-bar>
   <button *ngIf="(user | async)" mat-button (click)="logout()">Logout</button>  
-  <button  [routerLink]="['/task']" *ngIf="(user | async)" mat-button (click)="logout()">task</button>
-  <button  [routerLink]="['/guest']" *ngIf="(user | async)" mat-button (click)="logout()">guest</button>
-  <button  [routerLink]="['/wedding']" *ngIf="(user | async)" mat-button (click)="logout()">wedding</button>
+  <button  [routerLink]="['/task']" *ngIf="true" mat-button >Task</button>
+  <button  [routerLink]="['/guest']" *ngIf="true" mat-button >Guest</button>
+  <button  [routerLink]="['/wedding']" *ngIf="true" mat-button >Wedding</button>
 
   <!-- Anonim felhasználó esetén -->
   <button *ngIf="!(user | async)" mat-button [routerLink]="['/login']" > Login </button>

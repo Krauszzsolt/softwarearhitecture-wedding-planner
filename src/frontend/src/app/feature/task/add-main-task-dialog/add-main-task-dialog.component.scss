@@ -1,0 +1,66 @@
+@import 'bulma/css/bulma.min.css';
+@import '../../../app.component.scss';
+
+h1 {
+  font-size: 1.5rem;
+}
+.mat-dialog-content {
+  min-height: 40vh;
+  height: auto;
+  width: 40vw;
+  .title-input {
+    font-size: 1.2rem;
+    padding: 2rem 0;
+  }
+  .file {
+    line-height: 3rem;
+  }
+  .file-label {
+    border: 1px solid white;
+    .file-label {
+      padding-left: 1rem;
+      // max-width: 10vw;
+      width: 50%;
+      align-items: center;
+    }
+  }
+  .file-name {
+    // max-width: 10vw;
+    width: 50%;
+    line-height: 2.5rem;
+    height: 100%;
+  }
+}
+.cover-image {
+  max-width: 20rem;
+  max-height: 32rem;
+}
+
+.side-buffer {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.mat-card-content {
+  div {
+    padding: 0.5rem;
+  }
+  button {
+    background-color: $orange;
+  }
+}
+
+::ng-deep .mat-form-field.mat-focused {
+  .mat-form-field-label {
+    color: $orange;
+  }
+  .mat-form-field-ripple {
+    background-color: $orange;
+  }
+  .mat-form-field-required-marker {
+    color: $orange;
+  }
+  .mat-input-element {
+    color: $white;
+  }
+}

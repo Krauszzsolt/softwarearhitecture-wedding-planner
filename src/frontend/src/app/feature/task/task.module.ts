@@ -12,5 +12,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
   declarations: [MainTaskListComponent, SubTaskListComponent, AddMainTaskDialogComponent, AddSubTaskDialogComponent, DetailedSubTaskDialogComponent],
   imports: [CommonModule, TaskRoutingModule, SharedModule],
+  entryComponents: [AddMainTaskDialogComponent, AddSubTaskDialogComponent, DetailedSubTaskDialogComponent],
 })
 export class TaskModule {}

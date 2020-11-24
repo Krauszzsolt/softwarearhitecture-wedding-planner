@@ -11,6 +11,7 @@ import { MatDialogWrapperComponent } from './dialog/mat-dialog-wrapper.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SpinnerComponent } from './component/spinner/spinner.component';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [MatDialogWrapperComponent, SpinnerComponent],
   imports: [
@@ -29,6 +30,7 @@ import { SpinnerComponent } from './component/spinner/spinner.component';
     MatSelectModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
+    MatIconModule
   ],
   exports: [
     MatSidenavModule,
@@ -47,6 +49,7 @@ import { SpinnerComponent } from './component/spinner/spinner.component';
     FlexLayoutModule,
     MatProgressSpinnerModule,
     SpinnerComponent,
+    MatIconModule
   ],
   entryComponents: [MatDialogWrapperComponent],
 })
