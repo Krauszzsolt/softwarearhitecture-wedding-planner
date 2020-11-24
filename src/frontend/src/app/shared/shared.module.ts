@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SpinnerComponent } from './component/spinner/spinner.component';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
   declarations: [MatDialogWrapperComponent, SpinnerComponent],
   imports: [
@@ -30,7 +31,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatSelectModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   exports: [
     MatSidenavModule,
@@ -49,7 +51,8 @@ import {MatIconModule} from '@angular/material/icon';
     FlexLayoutModule,
     MatProgressSpinnerModule,
     SpinnerComponent,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   entryComponents: [MatDialogWrapperComponent],
 })

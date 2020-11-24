@@ -12,7 +12,7 @@ import { DetailedSubTaskDialogComponent } from '../detailed-sub-task-dialog/deta
 export class SubTaskListComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private router: Router) { }
-  
+  checked
   ngOnInit() {}
   openSubTaskDialog() {
     const dialogRef = this.dialog.open(AddSubTaskDialogComponent);

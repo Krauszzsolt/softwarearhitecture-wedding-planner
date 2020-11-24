@@ -5,17 +5,23 @@
 
   <div class="row">
     <mat-card (click)="mainTaskSelect()">
-      <!-- <img class="cover" src="../../../assets/caff-icon-o.png" alt="icon"> -->
-      <mat-card-title class="title">
-        Title one
-
-        <!-- Admin flehanszáló esetén -->
-      </mat-card-title>
+      <mat-card-title class="title"> Title one </mat-card-title>
+      <mat-card-content class="content">
+        <div class="descreption">
+          A szöveg megfelelője gyakorlatilag az összes európai nyelvben "Text" (különböző írásképekkel a nemzeti helyesírás miatt), ami a latin "textum" szóból ered, amely szó
+          eredeti jelentése: szövet, szöveg. 
+        </div>
+        <div>
+          <section class="check-section">
+            <mat-checkbox class="example-margin" [(ngModel)]="checked">Checked</mat-checkbox>
+          </section>
+        </div>
+      </mat-card-content>
     </mat-card>
   </div>
 </div>
 <div class="button-container">
-  <button (click)="openSubTaskDialog()"  mat-fab color="warn">
+  <button (click)="openSubTaskDialog()" mat-fab color="warn">
     <mat-icon>add</mat-icon>
   </button>
 </div>

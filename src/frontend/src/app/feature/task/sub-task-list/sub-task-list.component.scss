@@ -26,10 +26,7 @@
   margin-top: 1rem;
   padding: 0;
   .title {
-    padding: 1rem;
-  }
-  :hover {
-    cursor: pointer;
+    padding-top: 1rem;
   }
 }
 
@@ -38,3 +35,16 @@
   right: 30px;
   bottom: 30px;
 }
+
+.mat-card-content{
+  .descreption{
+    padding: 1rem;
+  }
+  
+  .check-section{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 1rem;
+  }
+}
+
