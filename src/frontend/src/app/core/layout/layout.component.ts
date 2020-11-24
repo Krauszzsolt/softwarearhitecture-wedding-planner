@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MyTaskService } from 'src/app/feature/task/service/my-task.service';
+import { TaskManagementService } from 'src/app/feature/task/service/task-management.service';
 import { ApplicationUserDto } from 'src/app/shared/client';
 import { AuthService } from '../service/auth.service';
 
@@ -10,7 +10,7 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor(private authService: AuthService, private taskService: MyTaskService) {}
+  constructor(private authService: AuthService, private taskManagementService: TaskManagementService) {}
   public user: Observable<ApplicationUserDto> = new Observable();
   public showFiller = false;
   public search = '';
@@ -19,7 +19,7 @@ export class LayoutComponent implements OnInit {
   }
 
   public searchEvetn() {
-    this.taskService.setSearchTerm(this.search);
+    this.taskManagementService.setSearchTerm(this.search);
   }
 
   public logout() {

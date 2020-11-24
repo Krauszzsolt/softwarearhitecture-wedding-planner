@@ -16,6 +16,16 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
+        path: 'guest',
+        loadChildren: () => import('./../feature/guest/guest.module').then((m) => m.GuestModule),
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'wedding',
+        loadChildren: () => import('./../feature/wedding/wedding.module').then((m) => m.WeddingModule),
+        canActivate: [AuthGuard]
+      },
+      {
         path: 'login',
         component: LoginComponent,
       },

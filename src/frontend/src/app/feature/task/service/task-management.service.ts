@@ -6,7 +6,7 @@ import { CommentDto, NewCommentDto, NewTaskDto, NewTaskGroupDto, TaskDto, TaskGr
 @Injectable({
   providedIn: 'root',
 })
-export class MyTaskService {
+export class TaskManagementService {
   constructor(private taskService: TaskService, private taskGroupService: TaskGroupService) {
     this.searchTrem = new BehaviorSubject<string>('');
   }
