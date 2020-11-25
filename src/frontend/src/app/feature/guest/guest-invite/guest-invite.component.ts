@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-guest-invite',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuestInviteComponent implements OnInit {
 
-  constructor() { }
+  public guestList: FormGroup;
+  public loading = false;
+  public error = '';
+  constructor(public dialog: MatDialog, private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    this.guestList = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+    });
+  }
+
+  get f() {
+    return this.guestList.controls;
+  }
+
+
+  mainTaskSelect() {
+    console.log('jeeh');
+    // this.router.navigateByUrl('task/1')
   }
 
 }

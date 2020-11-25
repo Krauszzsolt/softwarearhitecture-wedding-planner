@@ -1,0 +1,40 @@
+@import '../../../app.component.scss';
+
+.container {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  @media screen and (max-width: 765px) {
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .add-button {
+    background: $orange-2;
+    align-self: center;
+  }
+}
+
+.mat-card {
+  text-align: center;
+  width: 30rem;
+  margin-top: 1rem;
+  padding: 0;
+  .title {
+    padding: 1rem;
+  }
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.button-container {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
