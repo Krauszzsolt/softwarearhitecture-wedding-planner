@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "generate:api": "openapi-generator-cli generate -g typescript-angular -i http://localhost:55368/swagger/v1/swagger.json -o ./src/app/shared/client"
+    "generate:api": "openapi-generator-cli generate -g typescript-angular -i http://localhost:55368/swagger/v1/swagger.json -o ./src/app/shared/client",
+    "format": "prettier  --single-quote --print-width 180 --trailing-comma es5 --write src/**/*.ts"
   },
   "private": true,
   "dependencies": {
