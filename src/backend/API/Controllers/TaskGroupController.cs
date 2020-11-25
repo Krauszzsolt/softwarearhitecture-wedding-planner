@@ -45,7 +45,13 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<TaskGroupDto>> AddTaskGroup([FromBody] NewTaskGroupDto newTaskGroup)
         {
-            throw new NotImplementedException();
+            return await _taskGroupService.AddTaskGroup(new TaskGroupDto()
+            {
+                WeddingId = CurrentUser.WeddingId.Value,
+                Name = newTaskGroup.Name,
+                Description = newTaskGroup.Description,
+                RequiredTaskGroups = newTaskGroup.RequiredTaskGroups
+            });
         }
 
         /// <summary>
@@ -55,9 +61,15 @@ namespace API.Controllers
         /// <returns></returns>
         [HttpPost("{id}/delete")]
         [Authorize]
-        public async Task DeleteTaskGroup(long id)
+        public async Task<ActionResult> DeleteTaskGroup(long id)
         {
-            throw new NotImplementedException();
+            var _tg = await _taskGroupService.GetTaskGroup(id);
+            if (_tg.WeddingId != CurrentUser.WeddingId)
+            {
+                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            await _taskGroupService.DeleteTaskGroup(id);
+            return new JsonResult(new { message = "Success" }) { StatusCode = StatusCodes.Status200OK };
         }
     }
 }
