@@ -1,5 +1,6 @@
 ﻿using BLL.DTOs;
 using DAL.Data;
+using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,6 +38,25 @@ namespace BLL.Services
                 }).ToList()
             }).FirstOrDefaultAsync();
             return result;
+        }
+
+        public async Task<WeddingDto> AddWedding(WeddingDto newWedding)
+        {
+            var _w = new Wedding()
+            {
+                UserId = newWedding.UserId,
+                Name = newWedding.Name,
+                BethrothedOne = newWedding.BethrothedOne,
+                BethrothedTwo = newWedding.BethrothedTwo,
+                Date = newWedding.Date
+            };
+
+            _context.Weddings.Add(_w);
+
+            await _context.SaveChangesAsync();
+
+            var result = await _context.Weddings.FindAsync(_w.Id);
+            return new WeddingDto(result);
         }
     }
 }

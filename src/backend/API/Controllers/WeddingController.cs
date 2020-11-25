@@ -39,13 +39,20 @@ namespace API.Controllers
         /// <summary>
         /// Create a new wedding
         /// </summary>
-        /// <param name="newWeding">New wedding data</param>
+        /// <param name="newWedding">New wedding data</param>
         /// <returns>Created wedding data</returns>
         [HttpPost("add")]
         [Authorize]
-        public async Task<ActionResult<WeddingDto>> AddWedding([FromBody] NewWeddingDto newWeding)
+        public async Task<ActionResult<WeddingDto>> AddWedding([FromBody] NewWeddingDto newWedding)
         {
-            throw new NotImplementedException();
+            return await _weddingService.AddWedding(new WeddingDto()
+            {
+                UserId = CurrentUser.Id,
+                Name = newWedding.Name,
+                BethrothedOne = newWedding.BethrothedOne,
+                BethrothedTwo = newWedding.BethrothedTwo,
+                Date = newWedding.Date
+            });
         }
 
         /// <summary>
