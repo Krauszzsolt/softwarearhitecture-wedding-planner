@@ -1,45 +1,31 @@
 <div fxLayout="row" fxLayoutAlign="center">
-  <h2>New task</h2>
+  <h2>{{taskDto.name}}</h2>
 </div>
-<div class="row" fxLayoutAlign="center">
-  <h4>Wedding tasks decreption</h4>
+<div class="column" fxLayoutAlign="center">
+  <h4>{{taskDto.description}}</h4>
+  <h5>Felelős: {{taskDto.responsible}}</h5>
 </div>
 <mat-card-content>
-  <form [formGroup]="newStoryForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
     <div fxLayout="column">
-      <!-- <div fxLayout="column">      
-        <button mat-raised-button (click)="fileInput.click()" type="button">Choose File</button>
-        <input hidden type="file" #fileInput (change)="onFileChange($event)" />
-      </div> -->
-
       <div class="comments">
-        <div>Comment1</div>
-        <div>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-          printer took a galley of type and scrambled it to make a type specimen book.
-          <span>/Lala/</span>
+        <div *ngFor="let comment of taskDto.comments">
+          {{ comment.content }} <span>{{ comment.author }}</span>
         </div>
-        <div>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-          printer took a galley of type and scrambled it to make a type specimen book.
-          <span>/Zsolti/</span>
-        </div>
-        <div>Comment4</div>
-        <div>Comment5</div>
       </div>
       <div fxLayout="column">
         <mat-form-field appearance="fill">
-          <mat-label>Comment</mat-label>
+          <mat-label>Hozzászólás</mat-label>
 
-          <textarea formControlName="desreption" matInput placeholder="Ex. It makes me feel..."></textarea>
-          <mat-error *ngIf="f.title.errors && f.title.errors.required">Mező kitöltése kötelező  </mat-error>
+          <textarea formControlName="comment" matInput placeholder="Ex. It makes me feel..."></textarea>
+          <mat-error *ngIf="f.comment.errors && f.comment.errors.required">Mező kitöltése kötelező </mat-error>
         </mat-form-field>
       </div>
       <div fxLayout="row" fxLayoutAlign="center"></div>
-      <button mat-flat-button>Comment</button>
+      <button mat-flat-button>Hozzászólás</button>
       <div fxLayout="row" fxLayoutAlign="space-around">
-        <button *ngIf="!loading" [disabled]="loading" mat-flat-button color="primary">Delete</button>
-        <button *ngIf="!loading" [disabled]="loading" mat-flat-button color="primary">Complete</button>
+        <button *ngIf="!loading" [disabled]="loading" mat-flat-button (click)="delete()" color="primary">Törlés</button>
+        <button *ngIf="!loading" [disabled]="loading" mat-flat-button (click)="complete()" color="primary">Kész</button>
       </div>
     </div>
   </form>
