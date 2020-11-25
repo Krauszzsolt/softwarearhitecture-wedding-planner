@@ -8,9 +8,8 @@ describe('MainTaskListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainTaskListComponent ]
-    })
-    .compileComponents();
+      declarations: [MainTaskListComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

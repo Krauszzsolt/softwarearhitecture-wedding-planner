@@ -22,6 +22,6 @@ export class MainTaskListComponent implements OnInit {
 
   mainTaskSelect() {
     console.log('jeeh');
-    this.router.navigateByUrl('task/1')
+    this.router.navigateByUrl('task/1');
   }
 }

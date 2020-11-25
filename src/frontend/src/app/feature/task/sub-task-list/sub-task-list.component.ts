@@ -7,12 +7,11 @@ import { DetailedSubTaskDialogComponent } from '../detailed-sub-task-dialog/deta
 @Component({
   selector: 'app-sub-task-list',
   templateUrl: './sub-task-list.component.html',
-  styleUrls: ['./sub-task-list.component.scss']
+  styleUrls: ['./sub-task-list.component.scss'],
 })
 export class SubTaskListComponent implements OnInit {
-
-  constructor(public dialog: MatDialog, private router: Router) { }
-  checked
+  constructor(public dialog: MatDialog, private router: Router) {}
+  checked;
   ngOnInit() {}
   openSubTaskDialog() {
     const dialogRef = this.dialog.open(AddSubTaskDialogComponent);
@@ -32,7 +31,6 @@ export class SubTaskListComponent implements OnInit {
 
   mainTaskSelect() {
     console.log('jeeh');
-    this.router.navigateByUrl('task/1')
+    this.router.navigateByUrl('task/1');
   }
-
 }

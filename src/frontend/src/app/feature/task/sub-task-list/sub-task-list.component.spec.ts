@@ -8,9 +8,8 @@ describe('SubTaskListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubTaskListComponent ]
-    })
-    .compileComponents();
+      declarations: [SubTaskListComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

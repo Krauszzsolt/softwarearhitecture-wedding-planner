@@ -8,9 +8,8 @@ describe('AddSubTaskDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddSubTaskDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [AddSubTaskDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

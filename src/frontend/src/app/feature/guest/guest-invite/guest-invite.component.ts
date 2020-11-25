@@ -19,7 +19,7 @@ export class GuestInviteComponent implements OnInit {
     this.addGuest();
     this.addGuest();
     this.addGuest();
-    this.f
+    this.f;
   }
 
   addGuest() {
@@ -32,14 +32,14 @@ export class GuestInviteComponent implements OnInit {
   }
 
   get f() {
-    console.log(this.guestList.controls)
-    console.log(this.guestList)
-     return this.guestList.controls as FormGroup[];
+    console.log(this.guestList.controls);
+    console.log(this.guestList);
+    return this.guestList.controls as FormGroup[];
   }
 
-  delete(index){
+  delete(index) {
     this.guestList.removeAt(index);
-}
+  }
 
   mainTaskSelect() {
     console.log('jeeh');

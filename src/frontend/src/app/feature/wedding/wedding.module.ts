@@ -6,9 +6,6 @@ import { CreateWeddingComponent } from './create-wedding/create-wedding.componen
 
 @NgModule({
   declarations: [CreateWeddingComponent],
-  imports: [
-    CommonModule,
-    WeddingRoutingModule
-  ]
+  imports: [CommonModule, WeddingRoutingModule],
 })
-export class WeddingModule { }
+export class WeddingModule {}

@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginDto: LoginDto = {
     username: '',
-    password: ''
+    password: '',
   };
 
   errorMessage: string = undefined;

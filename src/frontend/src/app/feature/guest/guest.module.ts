@@ -7,10 +7,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [GuestInviteComponent],
-  imports: [
-    CommonModule,
-    GuestRoutingModule,
-    SharedModule
-  ]
+  imports: [CommonModule, GuestRoutingModule, SharedModule],
 })
-export class GuestModule { }
+export class GuestModule {}

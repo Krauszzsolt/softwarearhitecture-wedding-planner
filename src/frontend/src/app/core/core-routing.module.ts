@@ -14,17 +14,17 @@ const routes: Routes = [
       {
         path: 'task',
         loadChildren: () => import('./../feature/task/task.module').then((m) => m.TaskModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'guest',
         loadChildren: () => import('./../feature/guest/guest.module').then((m) => m.GuestModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'wedding',
         loadChildren: () => import('./../feature/wedding/wedding.module').then((m) => m.WeddingModule),
-        canActivate: [WeddingGuard]
+        canActivate: [WeddingGuard],
       },
       {
         path: 'login',

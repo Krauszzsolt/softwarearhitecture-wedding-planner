@@ -8,9 +8,8 @@ describe('CreateWeddingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateWeddingComponent ]
-    })
-    .compileComponents();
+      declarations: [CreateWeddingComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

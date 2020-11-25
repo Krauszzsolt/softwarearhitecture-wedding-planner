@@ -11,8 +11,8 @@ import { MatDialogWrapperComponent } from './dialog/mat-dialog-wrapper.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SpinnerComponent } from './component/spinner/spinner.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [MatDialogWrapperComponent, SpinnerComponent],
   imports: [
@@ -32,7 +32,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     FlexLayoutModule,
     MatProgressSpinnerModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   exports: [
     MatSidenavModule,
@@ -52,7 +52,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatProgressSpinnerModule,
     SpinnerComponent,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   entryComponents: [MatDialogWrapperComponent],
 })
