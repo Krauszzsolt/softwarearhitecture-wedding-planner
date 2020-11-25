@@ -1,4 +1,4 @@
-@import "../../app.component.scss";
+@import '../../app.component.scss';
 
 .container {
   display: flex;
@@ -15,14 +15,14 @@
     background-color: rgba($color: $white, $alpha: 0.3);
     border-radius: 20px;
     .title {
+      padding: 20px;
       display: flex;
-      justify-content: center;    
-        img{
-          width: 6rem;
-          margin-top: 3rem;
-        }  
+      justify-content: center;
+      img {
+        width: 6rem;
+        margin-top: 3rem;
+      }
     }
-    
   }
   .form {
     display: flex;
@@ -37,5 +37,3 @@
     }
   }
 }
-
-
