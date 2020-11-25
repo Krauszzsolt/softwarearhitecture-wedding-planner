@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="center">
   <h2>Új feladat hozzáadása</h2>
 </div>
-<mat-card-content>
+<mat-card-content *ngIf="wedding">
   <form [formGroup]="subTask" (ngSubmit)="onSubmit()">
     <div fxLayout="column">
       <!-- <div fxLayout="column">      

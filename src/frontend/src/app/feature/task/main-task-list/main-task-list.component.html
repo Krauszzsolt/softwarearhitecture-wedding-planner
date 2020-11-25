@@ -3,7 +3,7 @@
     <h1>Esküvői feladatok</h1>
   </div>
 
-  <div class="row">
+  <div *ngIf="wedding" class="row">
     <mat-card (click)="mainTaskSelect(taskGroup.id)" *ngFor="let taskGroup of wedding.taskGroups">     
       <mat-card-title class="title">
         {{taskGroup.name}}

@@ -12,13 +12,13 @@ import { TaskManagementService } from '../service/task-management.service';
   styleUrls: ['./sub-task-list.component.scss'],
 })
 export class SubTaskListComponent implements OnInit {
-  constructor(public dialog: MatDialog, private router: Router, private taskManagementSerice: TaskManagementService, private route: ActivatedRoute ) {}
+  constructor(public dialog: MatDialog, private router: Router, private taskManagementSerice: TaskManagementService, private route: ActivatedRoute) {}
   public checked;
-  public taskGroupDto : TaskGroupDto;
+  public taskGroupDto: TaskGroupDto;
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id') as undefined as number;
-    this.taskManagementSerice.getTaskGroupDetail(id).subscribe(resp =>{
-      this.taskGroupDto = resp
+    const id = (this.route.snapshot.paramMap.get('id') as undefined) as number;
+    this.taskManagementSerice.getTaskGroupDetail(id).subscribe((resp) => {
+      this.taskGroupDto = resp;
     });
   }
   openSubTaskDialog() {
@@ -42,7 +42,7 @@ export class SubTaskListComponent implements OnInit {
     this.router.navigateByUrl('task/1');
   }
 
-  changeTaskComplete(id){
-    this.taskManagementSerice.completeTask(id).subscribe(() => {})
+  changeTaskComplete(id) {
+    this.taskManagementSerice.completeTask(id).subscribe(() => {});
   }
 }

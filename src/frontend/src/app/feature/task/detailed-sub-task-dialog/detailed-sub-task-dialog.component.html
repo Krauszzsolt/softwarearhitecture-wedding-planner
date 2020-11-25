@@ -1,11 +1,11 @@
-<div fxLayout="row" fxLayoutAlign="center">
+<div *ngIf="taskDto" fxLayout="row" fxLayoutAlign="center">
   <h2>{{taskDto.name}}</h2>
 </div>
-<div class="column" fxLayoutAlign="center">
+<div *ngIf="taskDto" class="column" fxLayoutAlign="center">
   <h4>{{taskDto.description}}</h4>
   <h5>Felelős: {{taskDto.responsible}}</h5>
 </div>
-<mat-card-content>
+<mat-card-content *ngIf="taskDto">
   <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
     <div fxLayout="column">
       <div class="comments">

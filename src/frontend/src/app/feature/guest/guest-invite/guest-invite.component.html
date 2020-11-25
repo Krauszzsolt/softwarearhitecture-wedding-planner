@@ -12,7 +12,7 @@
       </div>
     </mat-card>
   </div>
-  <div class="full-width" fxLayout="column" fxLayoutAlign="start center">
+  <div *ngIf="guests"class="full-width" fxLayout="column" fxLayoutAlign="start center">
     <mat-card *ngFor="let guest of guests; let i = index">
       <ng-container [formGroup]="guest">
         <mat-card-content fxLayout="row" fxLayoutAlign="start start">
