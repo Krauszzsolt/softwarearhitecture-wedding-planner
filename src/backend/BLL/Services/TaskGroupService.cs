@@ -69,5 +69,17 @@ namespace BLL.Services
             return result;
         }
 
+        public async System.Threading.Tasks.Task DeleteTaskGroup(long id)
+        {
+            var _tg = await _context.TaskGroups.FindAsync(id);
+
+            foreach (var item in await _context.TaskGroupHierarchy.Where(x => x.RequiredId == _tg.Id || x.TaskGroupId == _tg.Id).ToListAsync())
+            {
+                _context.TaskGroupHierarchy.Remove(item);
+            }
+            _context.TaskGroups.Remove(_tg);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

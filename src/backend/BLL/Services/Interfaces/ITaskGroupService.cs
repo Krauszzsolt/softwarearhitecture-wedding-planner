@@ -8,5 +8,7 @@ namespace BLL.Services
         Task<TaskGroupDto> GetTaskGroup(long id);
         
         Task<TaskGroupDto> AddTaskGroup(TaskGroupDto taskGroupDto);
+        
+        Task DeleteTaskGroup(long id);
     }
 }
