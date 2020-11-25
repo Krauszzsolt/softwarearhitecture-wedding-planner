@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { GuestManagementService } from '../service/gust-management.service';
 
 @Component({
   selector: 'app-guest-invite',
@@ -11,15 +12,14 @@ import { Router } from '@angular/router';
 export class GuestInviteComponent implements OnInit {
   public loading = false;
   public error = '';
-  constructor(public dialog: MatDialog, private router: Router, private formBuilder: FormBuilder) {}
+  constructor(public dialog: MatDialog, private router: Router, private formBuilder: FormBuilder,private guestManagerService: GuestManagementService) {}
   public guestList = new FormArray([]);
 
   ngOnInit() {
+    // this.guestManagerService.
     this.addGuest();
     this.addGuest();
     this.addGuest();
-    this.addGuest();
-    this.f;
   }
 
   addGuest() {
@@ -32,8 +32,6 @@ export class GuestInviteComponent implements OnInit {
   }
 
   get f() {
-    console.log(this.guestList.controls);
-    console.log(this.guestList);
     return this.guestList.controls as FormGroup[];
   }
 

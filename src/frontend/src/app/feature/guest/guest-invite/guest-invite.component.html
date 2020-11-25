@@ -2,8 +2,6 @@
   <div class="row">
     <h1>Wedding tasks</h1>
   </div>  
-
-
   <div class="row"  fxLayout="row" fxLayoutAlign="center center">
     <mat-card  fxFlex="50" (click)="mainTaskSelect()">     
       <div fxLayout="column">
@@ -17,8 +15,6 @@
       </div>
     </mat-card>
   </div>
-<!-- </div> -->
-  <!-- <form [formGroup]="guestList"> -->
     <div class="full-width" fxLayout="column" fxLayoutAlign="start center">
       <mat-card *ngFor="let guest of guestList.controls; let i = index">
         <ng-container [formGroup]="guest">
@@ -37,7 +33,6 @@
             </mat-form-field>
           </div>
           <div class="full-width" fxLayout="column" fxLayoutAlign="center center" fxFlexAlign="stretch"  fxFlex="35">
-            <!-- <button mat-button><mat-icon>add</mat-icon></button> -->
             <button mat-button (click)="delete(i)"><mat-icon>delete</mat-icon></button>
           </div>
         </mat-card-content>
@@ -45,7 +40,6 @@
       </mat-card>
       <button mat-button class="button" > Send invite</button>
     </div>
-  <!-- </form> -->
 </div>
 <div class="button-container">
   <button mat-fab color="warn">

@@ -2,9 +2,6 @@
   <div class="row">
     <h1>Alfeladatok</h1>
   </div>
-
- 
-
   <div class="row">
     <mat-card *ngFor="let subTask of taskGroupDto.tasks "  (click)="openSubTaskDetailDialog()">
       <mat-card-title class="title"> {{subTask.name}}</mat-card-title>
