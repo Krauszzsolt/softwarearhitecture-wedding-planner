@@ -28,11 +28,12 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<TaskGroupDto>> GetTaskGroup(long id)
         {
-            throw new NotImplementedException();
-            if (id != CurrentUser.WeddingId)
+            var result = await _taskGroupService.GetTaskGroup(id);
+            if (result.WeddingId != CurrentUser.WeddingId)
             {
                 return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
             }
+            return result;
         }
 
         /// <summary>
