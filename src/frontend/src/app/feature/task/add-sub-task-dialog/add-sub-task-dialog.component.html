@@ -1,8 +1,8 @@
 <div fxLayout="row" fxLayoutAlign="center">
-  <h2>New task</h2>
+  <h2>Új feladat hozzáadása</h2>
 </div>
 <mat-card-content>
-  <form [formGroup]="newStoryForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="subTask" (ngSubmit)="onSubmit()">
     <div fxLayout="column">
       <!-- <div fxLayout="column">      
         <button mat-raised-button (click)="fileInput.click()" type="button">Choose File</button>
@@ -11,33 +11,33 @@
 
       <div fxLayout="column">
         <mat-form-field appearance="fill">
-          <mat-label>Title</mat-label>
+          <mat-label>Feladat neve</mat-label>
           <input matInput formControlName="title" />
-          <mat-error *ngIf="f.title.errors && f.title.errors.required">Title is required </mat-error>
+          <mat-error *ngIf="f.title.errors && f.title.errors.required">Mező kitöltése kötelező  </mat-error>
         </mat-form-field>
       </div>
 
       <div fxLayout="column">
         <mat-form-field appearance="fill">
-          <mat-label>Favorite food</mat-label>
-          <mat-select formControlName="responsible" name="food">
-            <mat-option [value]="'test1'"> test1 </mat-option>
-            <mat-option [value]="'test2'"> test2 </mat-option>
+          <mat-label>Felelős</mat-label>
+          <mat-select formControlName="responsible" >
+            <mat-option [value]="wedding.bethrothedOne"> {{wedding.bethrothedOne}} </mat-option>
+            <mat-option [value]="wedding.bethrothedTwo"> {{wedding.bethrothedTwo}} </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div fxLayout="column">
         <mat-form-field appearance="fill">
 
-          <mat-label>Desreption</mat-label>
+          <mat-label>Leírás</mat-label>
 
-          <textarea formControlName="desreption" matInput placeholder="Ex. It makes me feel..."></textarea>
-          <mat-error *ngIf="f.title.errors && f.title.errors.required">Title is required </mat-error>
+          <textarea formControlName="desreption" matInput placeholder="Feladat leírás"></textarea>
+          <mat-error *ngIf="f.title.errors && f.title.errors.required">Mező kitöltése kötelező  </mat-error>
         </mat-form-field>
       </div>
 
       <div class="top-buffer-2" fxLayout="row" fxLayoutAlign="center">
-        <button *ngIf="!loading" [disabled]="loading" mat-flat-button color="primary">Create</button>
+        <button *ngIf="!loading" [disabled]="loading" mat-flat-button color="primary">Hozzáadás</button>
       </div>
     </div>
   </form>
