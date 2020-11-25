@@ -30,35 +30,8 @@ export class DetailedSubTaskDialogComponent implements OnInit {
 
   onFileChange(event) {}
 
-  deselect(selected: string): void {
-    // const index: number = this.f.tags.value.indexOf(selected);
-    // if (index > -1) {
-    //   const newValue: string[] = this.f.tags.value.map((x) => x);
-    //   newValue.splice(index, 1);
-    //   this.f.tags.setValue(newValue);
-    // }
-  }
 
   onSubmit(): void {
-    // stop here if form is invalid
-    if (this.newStoryForm.invalid) {
-      return;
-    }
-
-    let tags: string[] = [];
-    if (this.f.tags.value) {
-      tags = this.f.tags.value.map((x) => x);
-    }
-
-    this.loading = true;
-    // this.animationsService.animationsAddPost(this.f.title.value, this.f.coverImageSource.value).subscribe({
-    //   next: () => {
-    //     this.dialogRef.close();
-    //   },
-    //   error: (error) => {
-    //     this.error = error;
-    //     this.loading = false;
-    //   },
-    // });
+ 
   }
 }

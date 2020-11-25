@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { debounceTime, shareReplay } from 'rxjs/operators';
-import { CommentDto, NewCommentDto, NewTaskDto, NewTaskGroupDto, TaskDto, TaskGroupDto, TaskGroupService, TaskService } from 'src/app/shared/client';
+import { CommentDto, NewCommentDto, NewTaskDto, NewTaskGroupDto, TaskDto, TaskGroupDto, TaskGroupService, TaskService, WeddingDto, WeddingService } from 'src/app/shared/client';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskManagementService {
-  constructor(private taskService: TaskService, private taskGroupService: TaskGroupService) {
+  constructor(private taskService: TaskService, private taskGroupService: TaskGroupService, private weddingService: WeddingService) {
     this.searchTrem = new BehaviorSubject<string>('');
   }
 
@@ -19,6 +19,12 @@ export class TaskManagementService {
 
   public getSearchTerm(): Observable<string> {
     return this.searchTrem.asObservable().pipe(debounceTime(500));
+  }
+
+  public getTaskGroup(): Observable<WeddingDto> {
+    // id = JSON.parse(localStorage.getItem('user')).weddingId;
+    const id = 1;
+    return this.weddingService.weddingIdGet(id).pipe(shareReplay(1));
   }
 
   public getTaskGroupDetail(id: number): Observable<TaskGroupDto> {
