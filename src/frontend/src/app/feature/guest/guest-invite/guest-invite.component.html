@@ -3,11 +3,11 @@
     <h1>Vendégek meghívása</h1>
   </div>
   <div class="row" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card fxFlex="50" (click)="mainTaskSelect()">
+    <mat-card fxFlex="50">
       <div fxLayout="column">
         <mat-form-field class="input-field" fxLayout="column">
           <mat-label>Meghívólevél</mat-label>
-          <textarea class="" matInput placeholder="Meghívólevél"></textarea>
+          <textarea  [(ngModel)]="emailContent" matInput placeholder="Meghívólevél"></textarea>
         </mat-form-field>
       </div>
     </mat-card>
@@ -46,7 +46,7 @@
         </mat-card-content>
       </ng-container>
     </mat-card>
-    <button mat-button class="button">Meghívások elküldése</button>
+    <button mat-button class="button" (click)="invite()">Meghívások elküldése</button>
   </div>
 </div>
 <div class="button-container">

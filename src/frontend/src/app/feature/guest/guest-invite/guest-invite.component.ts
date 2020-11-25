@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-import { GuestDto } from 'src/app/shared/client';
+import { GuestDto, InviteDto, NewGuestDto } from 'src/app/shared/client';
 import { GuestManagementService } from '../service/gust-management.service';
 
 @Component({
@@ -16,6 +16,9 @@ export class GuestInviteComponent implements OnInit {
   constructor(public dialog: MatDialog, private router: Router, private formBuilder: FormBuilder, private guestManagerService: GuestManagementService) {}
   public guestList = new FormArray([]);
   public guests: GuestDto[];
+  public inviteDto: InviteDto;
+  public newGuestDto?: NewGuestDto[];
+  public emailContent: string;
   ngOnInit() {
     this.guestManagerService.getInvitedGuest().subscribe((resp) => {
       this.guests = resp;
@@ -42,8 +45,12 @@ export class GuestInviteComponent implements OnInit {
     this.guestList.removeAt(index);
   }
 
-  mainTaskSelect() {
-    console.log('jeeh');
-    // this.router.navigateByUrl('task/1')
+  invite() {
+    this.newGuestDto = this.f.map((x) => ({ name: x.controls.name.value, email: x.controls.email.value } as NewGuestDto));
+    this.inviteDto = {
+      guests: this.newGuestDto,
+      invitationText: this.emailContent,
+    };
+    this.guestManagerService.inviteGuest(this.inviteDto).subscribe((resp) => {});
   }
 }
