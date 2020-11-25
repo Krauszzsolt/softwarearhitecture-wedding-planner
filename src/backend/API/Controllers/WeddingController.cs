@@ -33,7 +33,7 @@ namespace API.Controllers
             {
                 return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
             }
-            throw new NotImplementedException();
+            return await _weddingService.GetWedding(id);
         }
 
         /// <summary>
