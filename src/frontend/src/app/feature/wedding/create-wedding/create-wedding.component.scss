@@ -1,0 +1,7 @@
+@import '../../../app.component.scss';
+
+.mat-card {
+  border-radius: 0;
+  padding: 0;
+  min-height: calc(100vh - 64px);
+}

@@ -1,3 +1,37 @@
-<p>
-  create-wedding works!
-</p>
+<div class="container">
+  <mat-card class="full-size">
+    <div class="row" fxLayoutAlign="center center">
+      <h1>Welcome!</h1>
+    </div>
+
+    <div class="row" fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="row" fxFlex="50">
+        <h3 style="text-align: center">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+          printer took a galley of type and scrambled it to make a type specimen book.
+        </h3>
+      </div>
+    </div>
+    <form [formGroup]="wedding">
+      <div class="" fxLayout="column" fxLayoutAlign="start center">
+        <mat-form-field fxFlex="50" class="input-field" appearance="fill">
+          <mat-label>Eküvő megnevezése</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error>Name is required </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="50" class="input-field" appearance="fill">
+          <mat-label>Párom kiválasztása</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error>Name is required </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="50" class="input-field" appearance="fill">
+          <mat-label>Időpont kiválasztása</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error>Name is required </mat-error>
+        </mat-form-field>
+
+        <button mat-button class="button">Send invite</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
