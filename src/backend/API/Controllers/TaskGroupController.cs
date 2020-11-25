@@ -45,7 +45,13 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<TaskGroupDto>> AddTaskGroup([FromBody] NewTaskGroupDto newTaskGroup)
         {
-            throw new NotImplementedException();
+            return await _taskGroupService.AddTaskGroup(new TaskGroupDto()
+            {
+                WeddingId = CurrentUser.WeddingId.Value,
+                Name = newTaskGroup.Name,
+                Description = newTaskGroup.Description,
+                RequiredTaskGroups = newTaskGroup.RequiredTaskGroups
+            });
         }
 
         /// <summary>

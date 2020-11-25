@@ -1,6 +1,8 @@
 ﻿using BLL.DTOs;
 using DAL.Data;
+using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,6 +37,34 @@ namespace BLL.Services
                     Description = t.Description,
                     Completed = t.Completed
                 }).ToList()
+            }).FirstOrDefaultAsync();
+            return result;
+        }
+
+        public async Task<TaskGroupDto> AddTaskGroup(TaskGroupDto newTaskGroup)
+        {
+            var _tg = new TaskGroup()
+            {
+                WeddingId = newTaskGroup.WeddingId,
+                Name = newTaskGroup.Name,
+                Description = newTaskGroup.Description,
+                Completed = false,
+                Before = newTaskGroup.RequiredTaskGroups.Select(x => new TaskGroupHierarchy() { RequiredId = x }).ToList()
+            };
+
+            _context.TaskGroups.Add(_tg);
+
+            await _context.SaveChangesAsync();
+
+            var result = await _context.TaskGroups.Where(tg => tg.Id == _tg.Id).Select(tg => new TaskGroupDto()
+            {
+                Id = tg.Id,
+                WeddingId = tg.WeddingId,
+                Name = tg.Name,
+                Description = tg.Description,
+                Completed = tg.Completed,
+                CanBeCompleted = !tg.Before.Any(x => !x.Required.Completed),
+                RequiredTaskGroups = tg.Before.Select(x => x.RequiredId).ToList()
             }).FirstOrDefaultAsync();
             return result;
         }
