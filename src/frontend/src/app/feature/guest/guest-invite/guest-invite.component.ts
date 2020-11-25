@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { GuestDto } from 'src/app/shared/client';
 import { GuestManagementService } from '../service/gust-management.service';
 
 @Component({
@@ -12,11 +13,13 @@ import { GuestManagementService } from '../service/gust-management.service';
 export class GuestInviteComponent implements OnInit {
   public loading = false;
   public error = '';
-  constructor(public dialog: MatDialog, private router: Router, private formBuilder: FormBuilder,private guestManagerService: GuestManagementService) {}
+  constructor(public dialog: MatDialog, private router: Router, private formBuilder: FormBuilder, private guestManagerService: GuestManagementService) {}
   public guestList = new FormArray([]);
-
+  public guests: GuestDto[];
   ngOnInit() {
-    // this.guestManagerService.
+    this.guestManagerService.getInvitedGuest().subscribe((resp) => {
+      this.guests = resp;
+    });
     this.addGuest();
     this.addGuest();
     this.addGuest();

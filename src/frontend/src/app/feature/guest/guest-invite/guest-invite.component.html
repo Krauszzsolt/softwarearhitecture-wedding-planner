@@ -1,45 +1,53 @@
 <div class="container">
   <div class="row">
-    <h1>Wedding tasks</h1>
-  </div>  
-  <div class="row"  fxLayout="row" fxLayoutAlign="center center">
-    <mat-card  fxFlex="50" (click)="mainTaskSelect()">     
+    <h1>Vendégek meghívása</h1>
+  </div>
+  <div class="row" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card fxFlex="50" (click)="mainTaskSelect()">
       <div fxLayout="column">
-        <mat-form-field class="input-field" fxLayout="column" >
-    
-          <mat-label>Desreption</mat-label>
-    
-          <textarea class="" matInput placeholder="Ex. It makes me feel..."></textarea>
-          <mat-error *ngIf="">Mező kitöltése kötelező </mat-error>
+        <mat-form-field class="input-field" fxLayout="column">
+          <mat-label>Meghívólevél</mat-label>
+          <textarea class="" matInput placeholder="Meghívólevél"></textarea>
         </mat-form-field>
       </div>
     </mat-card>
   </div>
-    <div class="full-width" fxLayout="column" fxLayoutAlign="start center">
-      <mat-card *ngFor="let guest of guestList.controls; let i = index">
-        <ng-container [formGroup]="guest">
+  <div class="full-width" fxLayout="column" fxLayoutAlign="start center">
+    <mat-card *ngFor="let guest of guests; let i = index">
+      <ng-container [formGroup]="guest">
         <mat-card-content fxLayout="row" fxLayoutAlign="start start">
+          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="65">
+            <h3>{{ guest.name }}</h3>
 
-          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="65" >
+            <h3>{{ guest.email }}</h3>
+          </div>
+        </mat-card-content>
+      </ng-container>
+    </mat-card>
+
+    <mat-card *ngFor="let guest of guestList.controls; let i = index">
+      <ng-container [formGroup]="guest">
+        <mat-card-content fxLayout="row" fxLayoutAlign="start start">
+          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="65">
             <mat-form-field class="full-width input-field" appearance="fill">
-              <mat-label>ng-template</mat-label>
+              <mat-label>Vendég neve</mat-label>
               <input matInput formControlName="name" />
-              <mat-error *ngIf="f[i].controls.name.errors && f[i].controls.name.errors.required">Name is required </mat-error>
+              <mat-error *ngIf="f[i].controls.name.errors && f[i].controls.name.errors.required">Mező kitöltése kötelező</mat-error>
             </mat-form-field>
             <mat-form-field class="full-width input-field" appearance="fill">
-              <mat-label>Email</mat-label>
+              <mat-label>Vendég email címe</mat-label>
               <input matInput formControlName="email" />
-              <mat-error *ngIf="f[i].controls.email.errors && f[i].controls.email.errors.required">Email is required </mat-error>
+              <mat-error *ngIf="f[i].controls.email.errors && f[i].controls.email.errors.required">Mező kitöltése kötelező</mat-error>
             </mat-form-field>
           </div>
-          <div class="full-width" fxLayout="column" fxLayoutAlign="center center" fxFlexAlign="stretch"  fxFlex="35">
+          <div class="full-width" fxLayout="column" fxLayoutAlign="center center" fxFlexAlign="stretch" fxFlex="35">
             <button mat-button (click)="delete(i)"><mat-icon>delete</mat-icon></button>
           </div>
         </mat-card-content>
-   </ng-container>
-      </mat-card>
-      <button mat-button class="button" > Send invite</button>
-    </div>
+      </ng-container>
+    </mat-card>
+    <button mat-button class="button">Meghívások elküldése</button>
+  </div>
 </div>
 <div class="button-container">
   <button mat-fab color="warn">
