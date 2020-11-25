@@ -4,14 +4,14 @@
   </div>  
 
 
-  <div class="row">
-    <mat-card (click)="mainTaskSelect()">     
+  <div class="row"  fxLayout="row" fxLayoutAlign="center center">
+    <mat-card  fxFlex="50" (click)="mainTaskSelect()">     
       <div fxLayout="column">
-        <mat-form-field fxFlex="65" >
+        <mat-form-field class="input-field" fxLayout="column" >
     
           <mat-label>Desreption</mat-label>
     
-          <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+          <textarea class="" matInput placeholder="Ex. It makes me feel..."></textarea>
           <mat-error *ngIf="">Title is required </mat-error>
         </mat-form-field>
       </div>
