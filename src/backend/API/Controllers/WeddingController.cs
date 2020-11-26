@@ -61,7 +61,6 @@ namespace API.Controllers
         /// <param name="picture">New picture</param>
         /// <returns>Picture id</returns>
         [HttpPost("{id}/upload")]
-        [Authorize]
         public async Task<ActionResult<string>> AddPicture(long id, [FromForm] NewPictureDto picture)
         {
             if (id != CurrentUser.WeddingId)
