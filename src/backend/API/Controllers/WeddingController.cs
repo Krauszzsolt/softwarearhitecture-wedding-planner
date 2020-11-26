@@ -63,10 +63,6 @@ namespace API.Controllers
         [HttpPost("{id}/upload")]
         public async Task<ActionResult<string>> AddPicture(long id, [FromForm] NewPictureDto picture)
         {
-            if (id != CurrentUser.WeddingId)
-            {
-                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
-            }
             return await _weddingService.AddPicture(id, picture.File);
         }
 
