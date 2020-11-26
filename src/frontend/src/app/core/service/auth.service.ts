@@ -47,6 +47,7 @@ export class AuthService {
       tap((x) => {
         localStorage.setItem('token', x.token);
         localStorage.setItem('currentUser', JSON.stringify(x));
+        this.currentUserSubject.next(x);
       })
     );
   }
