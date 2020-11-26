@@ -13,10 +13,12 @@ namespace API.Controllers
     {
 
         private readonly ITaskService _taskService;
+        private readonly ITaskGroupService _taskGroupService;
 
-        public TaskController(ITaskService taskService)
+        public TaskController(ITaskService taskService, ITaskGroupService taskGroupService)
         {
             _taskService = taskService;
+            _taskGroupService = taskGroupService;
         }
 
         /// <summary>
@@ -28,11 +30,13 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<TaskDto>> GetTask(long id)
         {
-            throw new NotImplementedException();
-            if (id != CurrentUser.WeddingId)
+            var result = await _taskService.GetTask(id);
+            var _tg = await _taskGroupService.GetTaskGroup(result.TaskGroupId);
+            if (_tg.WeddingId != CurrentUser.WeddingId)
             {
                 return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
             }
+            return result;
         }
 
         /// <summary>
@@ -44,7 +48,23 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<TaskDto>> AddTask([FromBody] NewTaskDto newTask)
         {
-            throw new NotImplementedException();
+            var _tg = await _taskGroupService.GetTaskGroup(newTask.TaskGroupId);
+            if (_tg == null)
+            {
+                return NotFound();
+            }
+            if (_tg.WeddingId != CurrentUser.WeddingId)
+            {
+                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+
+            return await _taskService.AddTask(new TaskDto()
+            {
+                TaskGroupId = _tg.Id,
+                Name = newTask.Name,
+                Description = newTask.Description,
+                Responsible = newTask.Responsible
+            });
         }
 
         /// <summary>
@@ -54,9 +74,16 @@ namespace API.Controllers
         /// <returns></returns>
         [HttpPost("{id}/delete")]
         [Authorize]
-        public async Task DeleteTask(long id)
+        public async Task<ActionResult> DeleteTask(long id)
         {
-            throw new NotImplementedException();
+            var _t = await _taskService.GetTask(id);
+            var _tg = await _taskGroupService.GetTaskGroup(_t.TaskGroupId);
+            if (_tg.WeddingId != CurrentUser.WeddingId)
+            {
+                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            await _taskService.DeleteTask(id);
+            return new JsonResult(new { message = "Success" }) { StatusCode = StatusCodes.Status200OK };
         }
 
         /// <summary>
@@ -68,7 +95,13 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<TaskDto>> CompleteTask(long id)
         {
-            throw new NotImplementedException();
+            var _t = await _taskService.GetTask(id);
+            var _tg = await _taskGroupService.GetTaskGroup(_t.TaskGroupId);
+            if (_tg.WeddingId != CurrentUser.WeddingId)
+            {
+                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            return await _taskService.CompleteTask(id);
         }
 
         /// <summary>
@@ -80,7 +113,19 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<CommentDto>> CommentTask(long id, NewCommentDto newComment)
         {
-            throw new NotImplementedException();
+            var _t = await _taskService.GetTask(id);
+            var _tg = await _taskGroupService.GetTaskGroup(_t.TaskGroupId);
+            if (_tg.WeddingId != CurrentUser.WeddingId)
+            {
+                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            return await _taskService.CommentTask(new CommentDto()
+            {
+                TaskId = id,
+                Author = newComment.Author,
+                Content = newComment.Content,
+                Created = DateTime.Now
+            });
         }
     }
 }
