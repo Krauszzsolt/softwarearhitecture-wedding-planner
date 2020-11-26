@@ -45,7 +45,7 @@ export class AddMainTaskDialogComponent implements OnInit {
 
     this.newTaskGroupDto = {
       name: this.f.task.value,
-      requiredTaskGroups: this.f.requiredTasks.value,
+      requiredTaskGroups: this.f.requiredTasks.value ? this.f.requiredTasks.value : [],
     };
     this.loading = true;
     this.taskManagementSerice.addTaskGroup(this.newTaskGroupDto).subscribe({
