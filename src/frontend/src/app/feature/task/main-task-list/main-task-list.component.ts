@@ -23,6 +23,9 @@ export class MainTaskListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      this.taskManagementSerice.getTaskGroup().subscribe((x) => {
+        this.wedding = x;
+      });
     });
   }
 

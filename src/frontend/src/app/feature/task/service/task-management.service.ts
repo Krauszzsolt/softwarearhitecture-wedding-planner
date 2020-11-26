@@ -22,8 +22,7 @@ export class TaskManagementService {
   }
 
   public getTaskGroup(): Observable<WeddingDto> {
-    // id = JSON.parse(localStorage.getItem('user')).weddingId;
-    const id = 1;
+    const id = JSON.parse(localStorage.getItem('currentUser')).weddingId;    
     return this.weddingService.weddingIdGet(id).pipe(shareReplay(1));
   }
 
