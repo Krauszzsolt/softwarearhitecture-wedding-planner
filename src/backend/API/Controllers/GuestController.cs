@@ -24,9 +24,10 @@ namespace API.Controllers
         /// <param name="id">Guest id</param>
         /// <returns></returns>
         [HttpPost("{id}/accept")]
-        public async Task AcceptInvite(long id)
+        public async Task<ActionResult> AcceptInvite(long id)
         {
-            throw new NotImplementedException();
+            await _guestService.AcceptInvite(id);
+            return new JsonResult(new { message = "Success" }) { StatusCode = StatusCodes.Status200OK };
         }
 
         /// <summary>
@@ -35,9 +36,10 @@ namespace API.Controllers
         /// <param name="id">Guest id</param>
         /// <returns></returns>
         [HttpPost("{id}/decline")]
-        public async Task DeclineInvite(long id)
+        public async Task<ActionResult> DeclineInvite(long id)
         {
-            throw new NotImplementedException();
+            await _guestService.DeclineInvite(id);
+            return new JsonResult(new { message = "Success" }) { StatusCode = StatusCodes.Status200OK };
         }
 
     }

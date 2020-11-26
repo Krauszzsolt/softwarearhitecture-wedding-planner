@@ -2,6 +2,7 @@
 using DAL.Data;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -58,5 +59,38 @@ namespace BLL.Services
             var result = await _context.Weddings.FindAsync(_w.Id);
             return new WeddingDto(result);
         }
+
+        public async Task<List<GuestDto>> GetInvitedGuests(long id)
+        {
+            return await _context.Guests.Where(g => g.WeddingId == id).Select(g => new GuestDto()
+            {
+                Id = g.Id,
+                WeddingId = g.WeddingId,
+                Name = g.Name,
+                AcceptedInvitation = g.AcceptedInvitation,
+                Email = g.Email
+            }).ToListAsync();
+        }
+
+        public async System.Threading.Tasks.Task InviteGuests(long weddingId, InviteDto invite)
+        {
+            var _w = await _context.Weddings.Include(x => x.Guests).Where(w => w.Id == weddingId).FirstOrDefaultAsync();
+
+            foreach (var item in invite.Guests)
+            {
+                _w.Guests.Add(new Guest()
+                {
+                    Name = item.Name,
+                    Email = item.Email,
+                    AcceptedInvitation = false
+                });
+            }
+
+            await _context.SaveChangesAsync();
+
+            // send emails
+
+        }
+
     }
 }
