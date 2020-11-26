@@ -48,6 +48,8 @@ namespace Backend
             services.AddControllers();
 
             // configure DI for application services
+            services.AddSingleton<IFileManager, FileManager>();
+
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IWeddingService, WeddingService>();
             services.AddScoped<ITaskGroupService, TaskGroupService>();
@@ -84,6 +86,8 @@ namespace Backend
             {
                 app.UseHttpsRedirection();
             }
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 

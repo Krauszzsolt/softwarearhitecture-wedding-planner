@@ -1,6 +1,8 @@
 ﻿using BLL.DTOs;
 using DAL.Data;
 using DAL.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,12 @@ namespace BLL.Services
     public class WeddingService : IWeddingService
     {
         private readonly ApplicationDbContext _context;
+        private readonly IFileManager _fileManager;
 
-        public WeddingService(ApplicationDbContext context)
+        public WeddingService(ApplicationDbContext context, IFileManager fileManager)
         {
             _context = context;
+            _fileManager = fileManager;
         }
 
         public async Task<WeddingDto> GetWedding(long id)
@@ -92,5 +96,27 @@ namespace BLL.Services
 
         }
 
+        public async Task<ActionResult<string>> AddPicture(long weddingId, IFormFile picture)
+        {
+            var imagesDir = "images";
+            var fileName = await _fileManager.SaveFile(picture, imagesDir);
+
+            var _p = new Picture()
+            {
+                WeddingId = weddingId,
+                PictureFile = $"/{imagesDir}/{fileName}"
+            };
+
+            _context.Pictures.Add(_p);
+
+            await _context.SaveChangesAsync();
+
+            return _p.PictureFile;
+        }
+
+        public async Task<ActionResult<List<string>>> GetPictures(long weddingId)
+        {
+            return await _context.Pictures.Where(p => p.WeddingId == weddingId).Select(x => x.PictureFile).ToListAsync();
+        }
     }
 }

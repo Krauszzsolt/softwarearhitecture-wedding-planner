@@ -1,4 +1,6 @@
 ﻿using BLL.DTOs;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,5 +15,9 @@ namespace BLL.Services
         Task<List<GuestDto>> GetInvitedGuests(long id);
 
         Task InviteGuests(long weddingId, InviteDto invite);
+
+        Task<ActionResult<string>> AddPicture(long weddingId, IFormFile picture);
+
+        Task<ActionResult<List<string>>> GetPictures(long weddingId);
     }
 }

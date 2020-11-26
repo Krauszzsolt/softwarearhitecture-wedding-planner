@@ -62,9 +62,13 @@ namespace API.Controllers
         /// <returns>Picture id</returns>
         [HttpPost("{id}/upload")]
         [Authorize]
-        public async Task<ActionResult<string>> AddPicture(long id, [FromForm] IFormFile picture)
+        public async Task<ActionResult<string>> AddPicture(long id, [FromForm] NewPictureDto picture)
         {
-            throw new NotImplementedException();
+            if (id != CurrentUser.WeddingId)
+            {
+                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            return await _weddingService.AddPicture(id, picture.File);
         }
 
         /// <summary>
@@ -76,7 +80,11 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<List<string>>> GetPictures(long id)
         {
-            throw new NotImplementedException();
+            if (id != CurrentUser.WeddingId)
+            {
+                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            return await _weddingService.GetPictures(id);
         }
 
         /// <summary>
