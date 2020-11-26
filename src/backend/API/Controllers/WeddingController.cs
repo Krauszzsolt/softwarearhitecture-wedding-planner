@@ -61,10 +61,9 @@ namespace API.Controllers
         /// <param name="picture">New picture</param>
         /// <returns>Picture id</returns>
         [HttpPost("{id}/upload")]
-        [Authorize]
-        public async Task<ActionResult<string>> AddPicture(long id, [FromForm] IFormFile picture)
+        public async Task<ActionResult<string>> AddPicture(long id, [FromForm] NewPictureDto picture)
         {
-            throw new NotImplementedException();
+            return await _weddingService.AddPicture(id, picture.File);
         }
 
         /// <summary>
@@ -76,7 +75,11 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<List<string>>> GetPictures(long id)
         {
-            throw new NotImplementedException();
+            if (id != CurrentUser.WeddingId)
+            {
+                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            return await _weddingService.GetPictures(id);
         }
 
         /// <summary>
@@ -88,7 +91,11 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<List<GuestDto>>> GetInvitedGuests(long id)
         {
-            throw new NotImplementedException();
+            if (id != CurrentUser.WeddingId)
+            {
+                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            return await _weddingService.GetInvitedGuests(id);
         }
 
         /// <summary>
@@ -99,9 +106,14 @@ namespace API.Controllers
         /// <returns></returns>
         [HttpPost("{id}/invite")]
         [Authorize]
-        public async Task InviteGuests(long id, [FromBody] InviteDto invite)
+        public async Task<ActionResult> InviteGuests(long id, [FromBody] InviteDto invite)
         {
-            throw new NotImplementedException();
+            if (id != CurrentUser.WeddingId)
+            {
+                return new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            await _weddingService.InviteGuests(id, invite);
+            return new JsonResult(new { message = "Success" }) { StatusCode = StatusCodes.Status200OK };
         }
     }
 }

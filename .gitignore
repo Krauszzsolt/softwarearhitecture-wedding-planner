@@ -354,3 +354,4 @@ MigrationBackup/
 # Client generated files
 src/frontend/src/app/shared/client/*
 
+src/backend/API/wwwroot/images/*
