@@ -64,8 +64,6 @@ namespace BLL.Services
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(newUser, "User");
-
                 // authentication successful so generate jwt token
                 var token = GenerateJwtToken(newUser);
 
