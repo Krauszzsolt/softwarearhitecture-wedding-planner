@@ -58,6 +58,9 @@ namespace BLL.Services
 
             _context.Weddings.Add(_w);
 
+            var _u = await _context.Users.FindAsync(newWedding.UserId);
+            _u.Wedding = _w;
+
             await _context.SaveChangesAsync();
 
             var result = await _context.Weddings.FindAsync(_w.Id);
