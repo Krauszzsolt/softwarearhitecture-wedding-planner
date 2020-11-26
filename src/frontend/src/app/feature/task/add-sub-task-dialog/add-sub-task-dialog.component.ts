@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewTaskDto, NewTaskGroupDto, WeddingDto } from 'src/app/shared/client';
 import { TaskManagementService } from '../service/task-management.service';
@@ -11,8 +11,16 @@ import { TaskManagementService } from '../service/task-management.service';
   styleUrls: ['./add-sub-task-dialog.component.scss'],
 })
 export class AddSubTaskDialogComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<AddSubTaskDialogComponent>, private formBuilder: FormBuilder, private taskManagementSerice: TaskManagementService, private route: ActivatedRoute) {}
-
+  constructor(
+    public dialogRef: MatDialogRef<AddSubTaskDialogComponent>,
+    private formBuilder: FormBuilder,
+    private taskManagementSerice: TaskManagementService,
+    private route: ActivatedRoute,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.id = data.id;
+  }
+  id : number;
   subTask: FormGroup;
   loading = false;
   error = '';
@@ -25,9 +33,9 @@ export class AddSubTaskDialogComponent implements OnInit {
       this.wedding = x;
     });
     this.subTask = this.formBuilder.group({
-      task: ['', Validators.required],
-      desreption: [''],
-      requiredTasks: [''],
+      name: ['', Validators.required],
+      description: [''],
+      responsible: [''],
     });
   }
 
@@ -42,13 +50,13 @@ export class AddSubTaskDialogComponent implements OnInit {
     }
 
     this.newTaskDto = {
-      name: this.f.task.value,
-      responsible: this.f.requiredTasks.value,
-      description: this.f.desreption.value,
-      taskGroupId: this.route.snapshot.paramMap.get('id') as undefined as number
-
+      name: this.f.name.value,
+      responsible: this.f.responsible.value,
+      description: this.f.description.value,
+      taskGroupId: +this.id 
     };
     this.loading = true;
+    console.log(this.newTaskDto)
     this.taskManagementSerice.addTask(this.newTaskDto).subscribe({
       next: () => {
         this.dialogRef.close();

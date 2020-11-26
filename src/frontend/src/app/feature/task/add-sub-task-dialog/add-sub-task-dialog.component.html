@@ -12,8 +12,8 @@
       <div fxLayout="column">
         <mat-form-field appearance="fill">
           <mat-label>Feladat neve</mat-label>
-          <input matInput formControlName="title" />
-          <mat-error *ngIf="f.title.errors && f.title.errors.required">Mező kitöltése kötelező  </mat-error>
+          <input matInput formControlName="name" />
+          <mat-error *ngIf="f.name.errors && f.name.errors.required">Mező kitöltése kötelező  </mat-error>
         </mat-form-field>
       </div>
 
@@ -31,8 +31,8 @@
 
           <mat-label>Leírás</mat-label>
 
-          <textarea formControlName="desreption" matInput placeholder="Feladat leírás"></textarea>
-          <mat-error *ngIf="f.title.errors && f.title.errors.required">Mező kitöltése kötelező  </mat-error>
+          <textarea formControlName="description" matInput placeholder="Feladat leírás"></textarea>
+          <mat-error *ngIf="f.description.errors && f.description.errors.required">Mező kitöltése kötelező  </mat-error>
         </mat-form-field>
       </div>
 

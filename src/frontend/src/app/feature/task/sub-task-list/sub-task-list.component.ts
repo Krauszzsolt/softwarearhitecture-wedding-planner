@@ -22,10 +22,17 @@ export class SubTaskListComponent implements OnInit {
     });
   }
   openSubTaskDialog() {
-    const dialogRef = this.dialog.open(AddSubTaskDialogComponent);
+    const dialogRef = this.dialog.open(AddSubTaskDialogComponent, {
+      data: {
+        id: this.id,
+      },
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      this.taskManagementSerice.getTaskGroupDetail(this.id).subscribe((resp) => {
+        this.taskGroupDto = resp;
+      });
     });
   }
 
