@@ -24,8 +24,6 @@ export class GuestInviteComponent implements OnInit {
       this.guests = resp;
     });
     this.addGuest();
-    this.addGuest();
-    this.addGuest();
   }
 
   addGuest() {

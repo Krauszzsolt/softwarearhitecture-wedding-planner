@@ -20,6 +20,10 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
+  public updateUser() {
+    this.currentUserSubject.next(JSON.parse(localStorage.getItem('currentUser')));
+  }
+
   public getUser(): Observable<ApplicationUserDto> {
     return this.currentUserSubject.asObservable();
   }
