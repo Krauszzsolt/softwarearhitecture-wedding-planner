@@ -25,7 +25,7 @@ export class AddSubTaskDialogComponent implements OnInit {
       this.wedding = x;
     });
     this.subTask = this.formBuilder.group({
-      title: ['', Validators.required],
+      task: ['', Validators.required],
       desreption: [''],
       requiredTasks: [''],
     });

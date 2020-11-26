@@ -15,9 +15,9 @@ export class SubTaskListComponent implements OnInit {
   constructor(public dialog: MatDialog, private router: Router, private taskManagementSerice: TaskManagementService, private route: ActivatedRoute) {}
   public checked;
   public taskGroupDto: TaskGroupDto;
+  public id = (this.route.snapshot.paramMap.get('id') as undefined) as number;
   ngOnInit() {
-    const id = (this.route.snapshot.paramMap.get('id') as undefined) as number;
-    this.taskManagementSerice.getTaskGroupDetail(id).subscribe((resp) => {
+    this.taskManagementSerice.getTaskGroupDetail(this.id).subscribe((resp) => {
       this.taskGroupDto = resp;
     });
   }
@@ -29,20 +29,18 @@ export class SubTaskListComponent implements OnInit {
     });
   }
 
-  openSubTaskDetailDialog() {
-    const dialogRef = this.dialog.open(DetailedSubTaskDialogComponent);
+  openSubTaskDetailDialog(id) {
+    const dialogRef = this.dialog.open(DetailedSubTaskDialogComponent, {
+      data: {
+        id: id,
+      },
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      this.taskManagementSerice.getTaskGroupDetail(this.id).subscribe((resp) => {
+        this.taskGroupDto = resp;
+      });
     });
-  }
-
-  mainTaskSelect() {
-    console.log('jeeh');
-    this.router.navigateByUrl('task/1');
-  }
-
-  changeTaskComplete(id) {
-    this.taskManagementSerice.completeTask(id).subscribe(() => {});
   }
 }

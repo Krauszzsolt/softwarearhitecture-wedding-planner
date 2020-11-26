@@ -3,7 +3,7 @@
     <h1>Alfeladatok</h1>
   </div>
   <div *ngIf="taskGroupDto" class="row">
-    <mat-card *ngFor="let subTask of taskGroupDto.tasks" (click)="openSubTaskDetailDialog()">
+    <mat-card *ngFor="let subTask of taskGroupDto.tasks" (click)="openSubTaskDetailDialog(subTask.id)">
       <mat-card-title class="title"> {{ subTask.name }}</mat-card-title>
       <mat-card-content class="content">
         <div class="descreption">
@@ -11,7 +11,7 @@
         </div>
         <div>
           <section class="check-section">
-            <mat-checkbox class="example-margin" [(ngModel)]="subTask.completed" (change)="changeTaskComplete(subTask.id)">Checked</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="subTask.completed" >Checked</mat-checkbox>
           </section>
         </div>
       </mat-card-content>

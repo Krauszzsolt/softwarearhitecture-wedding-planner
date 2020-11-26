@@ -1,7 +1,7 @@
 <div *ngIf="taskDto" fxLayout="row" fxLayoutAlign="center">
   <h2>{{taskDto.name}}</h2>
 </div>
-<div *ngIf="taskDto" class="column" fxLayoutAlign="center">
+<div *ngIf="taskDto" fxLayout="column" fxLayoutAlign="center">
   <h4>{{taskDto.description}}</h4>
   <h5>Felelős: {{taskDto.responsible}}</h5>
 </div>
@@ -10,7 +10,7 @@
     <div fxLayout="column">
       <div class="comments">
         <div *ngFor="let comment of taskDto.comments">
-          {{ comment.content }} <span>{{ comment.author }}</span>
+          {{ comment.content }} <span>/{{ comment.author }}/</span>
         </div>
       </div>
       <div fxLayout="column">
