@@ -39,7 +39,6 @@ export class AddMainTaskDialogComponent implements OnInit {
   onFileChange(event) {}
 
   onSubmit(): void {
-    // stop here if form is invalid
     if (this.taskGroup.invalid) {
       return;
     }

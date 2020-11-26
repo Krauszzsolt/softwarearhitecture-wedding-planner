@@ -7,7 +7,7 @@ export class WeddingGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const currentUser = { weddingId: 'asd' }; //this.authService.currentUserValue;
+    const currentUser = this.authService.currentUserValue;
     if (currentUser) {
       return true;
     }

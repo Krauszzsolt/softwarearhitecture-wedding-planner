@@ -20,6 +20,10 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
+  public updateUser() {
+    this.currentUserSubject.next(JSON.parse(localStorage.getItem('currentUser')));
+  }
+
   public getUser(): Observable<ApplicationUserDto> {
     return this.currentUserSubject.asObservable();
   }
@@ -43,6 +47,7 @@ export class AuthService {
       tap((x) => {
         localStorage.setItem('token', x.token);
         localStorage.setItem('currentUser', JSON.stringify(x));
+        this.currentUserSubject.next(x);
       })
     );
   }

@@ -8,14 +8,12 @@ export class GuestManagementService {
   constructor(private guestService: GuestService, private weddingService: WeddingService) {}
 
   public inviteGuest(inviteDto?: InviteDto) {
-    // id = JSON.parse(localStorage.getItem('user')).weddingId;
-    const id = 1;
+    const id = JSON.parse(localStorage.getItem('currentUser')).weddingId;
     return this.weddingService.weddingIdInvitePost(id, inviteDto);
   }
 
   public getInvitedGuest() {
-    // id = JSON.parse(localStorage.getItem('user')).weddingId;
-    const id = 1;
+    const id = JSON.parse(localStorage.getItem('currentUser')).weddingId;
     return this.weddingService.weddingIdInvitedGet(id);
   }
 }

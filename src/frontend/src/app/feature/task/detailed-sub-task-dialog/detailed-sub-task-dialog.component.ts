@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { NewCommentDto, TaskDto } from 'src/app/shared/client';
@@ -17,9 +17,11 @@ export class DetailedSubTaskDialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private taskManagementSerice: TaskManagementService,
-    private route: ActivatedRoute,
-    private userService: AuthService
-  ) {}
+    private userService: AuthService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.id = data.id;
+  }
 
   commentForm: FormGroup;
   loading = false;
@@ -27,9 +29,9 @@ export class DetailedSubTaskDialogComponent implements OnInit {
   taskDto: TaskDto;
   url: string | ArrayBuffer = 'https://localhost:44329/images/book-cover-placeholder.png';
   newCommentDto: NewCommentDto;
+  id;
   ngOnInit(): void {
-    const id = (this.route.snapshot.paramMap.get('id') as undefined) as number;
-    this.taskManagementSerice.getTaskDetail(id).subscribe((resp) => {
+    this.taskManagementSerice.getTaskDetail(this.id).subscribe((resp) => {
       this.taskDto = resp;
     });
     this.commentForm = this.formBuilder.group({
@@ -44,23 +46,24 @@ export class DetailedSubTaskDialogComponent implements OnInit {
   onFileChange(event) {}
 
   onSubmit(): void {
-    const id = (this.route.snapshot.paramMap.get('id') as undefined) as number;
     this.newCommentDto = {
       author: this.userService.currentUserValue.userName,
       content: this.f.comment.value,
     };
-    this.taskManagementSerice.addTaskComment(id, this.newCommentDto).subscribe(() => {});
+    this.taskManagementSerice.addTaskComment(this.id, this.newCommentDto).subscribe(() => {
+      this.taskManagementSerice.getTaskDetail(this.id).subscribe((resp) => {
+        this.taskDto = resp;
+      });
+    });
   }
 
   delete() {
-    const id = (this.route.snapshot.paramMap.get('id') as undefined) as number;
-    this.taskManagementSerice.deleteTask(id).subscribe(() => {
+    this.taskManagementSerice.deleteTask(this.id).subscribe(() => {
       this.dialogRef.close();
     });
   }
   complete() {
-    const id = (this.route.snapshot.paramMap.get('id') as undefined) as number;
-    this.taskManagementSerice.completeTask(id).subscribe(() => {
+    this.taskManagementSerice.completeTask(this.id).subscribe(() => {
       this.dialogRef.close();
     });
   }
