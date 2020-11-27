@@ -13,11 +13,16 @@
     </mat-card>
   </div>
   <div *ngIf="currentGuests" class="full-width" fxLayout="column" fxLayoutAlign="start center">
-    <mat-card *ngFor="let guest of currentGuests; let i = index">
+    <mat-card *ngFor="let guest of currentGuests; let i = index" [ngClass]="guest.acceptedInvitation ? 'accepted' : ''">
       <mat-card-content fxLayout="row" fxLayoutAlign="start start">
         <div fxLayout="column" fxLayoutAlign="start start" fxFlex="65" class="description">
           <h3>{{ guest.name }}</h3>
           <h3>{{ guest.email }}</h3>
+        </div>
+        <div *ngIf="guest.acceptedInvitation" class="full-width" fxLayout="column" fxLayoutAlign="center center" fxFlexAlign="stretch" fxFlex="35">
+          <button mat-button>
+            <mat-icon>check</mat-icon>
+          </button>
         </div>
       </mat-card-content>
     </mat-card>
