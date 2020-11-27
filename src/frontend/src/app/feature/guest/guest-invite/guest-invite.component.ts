@@ -14,43 +14,60 @@ import { GuestManagementService } from '../service/gust-management.service';
 export class GuestInviteComponent implements OnInit {
   public loading = false;
   public error = '';
-  constructor(public dialog: MatDialog, private guestManagerService: GuestManagementService, private authService: AuthService) {}
-  public guestList = new FormArray([]);
-  public guests: GuestDto[];
+
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private guestManagerService: GuestManagementService,
+    private authService: AuthService
+  ) {}
+
+  public guestForms = new FormArray([]);
+  public currentGuests: GuestDto[];
   public inviteDto: InviteDto;
-  public newGuestDto?: NewGuestDto[];
   public emailContent: string;
+
   ngOnInit() {
     this.guestManagerService.getInvitedGuest().subscribe((resp) => {
-      this.guests = resp;
+      this.currentGuests = resp;
     });
     this.addGuest();
     this.authService.setCurrentBethrothedSubject();
   }
 
   addGuest() {
-    const group = new FormGroup({
+    const form = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
     });
 
-    this.guestList.push(group);
+    this.guestForms.push(form);
   }
 
   get f() {
-    return this.guestList.controls as FormGroup[];
+    return this.guestForms.controls as FormGroup[];
   }
 
-  delete(index) {
-    this.guestList.removeAt(index);
+  delete(index: number) {
+    this.guestForms.removeAt(index);
   }
 
   invite() {
-    this.newGuestDto = this.f.map((x) => ({ name: x.controls.name.value, email: x.controls.email.value } as NewGuestDto));
+    const newGuests = this.f.map((x) => ({ name: x.controls.name.value, email: x.controls.email.value } as NewGuestDto));
     this.inviteDto = {
-      guests: this.newGuestDto,
+      guests: newGuests,
       invitationText: this.emailContent,
     };
-    this.guestManagerService.inviteGuest(this.inviteDto).subscribe((resp) => {});
+
+    this.guestManagerService.inviteGuest(this.inviteDto).subscribe((resp) => {
+      this.guestForms = new FormArray([]);
+      newGuests
+        .map((x) => ({ email: x.email, name: x.name, acceptedInvitation: false } as GuestDto))
+        .forEach((element) => {
+          this.currentGuests.push(element);
+        });
+      this.addGuest();
+    });
   }
 }

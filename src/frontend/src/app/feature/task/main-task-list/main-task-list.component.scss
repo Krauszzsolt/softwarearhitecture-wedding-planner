@@ -33,6 +33,23 @@
   }
 }
 
+.mat-card.done{
+  background: $orange;
+}
+
+.mat-card.disabled{
+  opacity: 0.4;
+  :hover {
+    cursor: default;
+  }
+}
+
+.mat-card-content{
+  .description{
+    padding: 1rem;
+  }
+}
+
 .button-container {
   position: fixed;
   right: 30px;

@@ -50,4 +50,9 @@ export class SubTaskListComponent implements OnInit {
       });
     });
   }
+
+  navigateBack() {
+    this.router.navigate(['task']);
+  }
+
 }

@@ -33,14 +33,24 @@
   }
 }
 
+.mat-card.done{
+  background: $orange;
+}
+
 .button-container {
   position: fixed;
   right: 30px;
   bottom: 30px;
 }
 
+.back-button-container {
+  position: fixed;
+  left: 30px;
+  top: 80px;
+}
+
 .mat-card-content{
-  .descreption{
+  .description{
     padding: 1rem;
   }
   

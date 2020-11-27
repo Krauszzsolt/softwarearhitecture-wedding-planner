@@ -31,7 +31,21 @@ export class MainTaskListComponent implements OnInit {
     });
   }
 
-  mainTaskSelect(id) {
-    this.router.navigateByUrl(`task/${id}`);
+  mainTaskSelect(id: number) {
+    if (this.wedding.taskGroups.filter(t => t.id == id)[0].canBeCompleted) {
+      this.router.navigateByUrl(`task/${id}`);
+    }
   }
+
+  getRequiredTasks(id: number) {
+    const ids = this.wedding.taskGroups.filter(t => t.id == id)[0].requiredTaskGroups;
+    
+    let ret = '';
+    this.wedding.taskGroups.filter(t => ids.indexOf(t.id) != -1 && !t.completed).forEach(element => {
+      ret += element.name + ', ';
+    });
+    ret = ret.substring(0, ret.length - 2);
+    return ret;
+  }
+
 }
