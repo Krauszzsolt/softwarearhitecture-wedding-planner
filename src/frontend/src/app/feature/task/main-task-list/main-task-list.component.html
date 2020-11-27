@@ -12,6 +12,9 @@
         <div class="description">
           {{ taskGroup.description }}
         </div>
+        <div *ngIf="!taskGroup.canBeCompleted" class="description">
+          Még nincs kész: {{ getRequiredTasks(taskGroup.id) }}
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
