@@ -47,7 +47,7 @@ export class DetailedSubTaskDialogComponent implements OnInit {
 
   onSubmit(): void {
     this.newCommentDto = {
-      author: this.userService.currentUserValue.userName,
+      author: this.userService.getActiveBethrothedName(),
       content: this.f.comment.value,
     };
     this.taskManagementSerice.addTaskComment(this.id, this.newCommentDto).subscribe(() => {
