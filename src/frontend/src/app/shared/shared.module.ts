@@ -13,7 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SpinnerComponent } from './component/spinner/spinner.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 @NgModule({
   declarations: [MatDialogWrapperComponent, SpinnerComponent],
@@ -36,7 +36,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     MatIconModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatButtonToggleModule
   ],
   exports: [
     MatSidenavModule,
@@ -58,7 +59,8 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     MatIconModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatButtonToggleModule
   ],
   entryComponents: [MatDialogWrapperComponent],
 })

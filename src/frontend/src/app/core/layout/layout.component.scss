@@ -1,7 +1,19 @@
+@import '../../app.component.scss';
 .example-spacer {
   flex: 1 1 auto;
 }
 
 .user-name{
   margin-left: 10px;
+  margin-right: 10px;
 }
+
+.mat-button-toggle{
+  background-color: $dark-grey;
+  color: white;;
+}
+.mat-button-toggle-checked {
+  background-color: $orange;
+  // color: mat-color($accent, default-contrast);
+}
+

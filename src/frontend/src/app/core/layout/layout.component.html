@@ -1,20 +1,22 @@
 <mat-toolbar>
   <span [routerLink]="['/task']">Esküvő szervező</span>
-  <span *ngIf="(user | async)" class="user-name">{{(user | async).userName}}</span>
+  <span *ngIf="user | async" class="user-name">{{ (user | async).userName }}</span>
+  <mat-button-toggle-group [value]="true" *ngIf="currentBethrothedSubject && currentBethrothedSubject[0].name != ''" appearance="legacy">
+    <mat-button-toggle (click)="setBethrothed(0)" [value]="currentBethrothedSubject[0].isActive">{{ currentBethrothedSubject[0].name }}</mat-button-toggle>
+    <mat-button-toggle (click)="setBethrothed(1)" [value]="currentBethrothedSubject[1].isActive">{{ currentBethrothedSubject[1].name }}</mat-button-toggle>
+  </mat-button-toggle-group>
   <span class="example-spacer"></span>
-  
-  
+
   <!-- Bejelentkezett felhasználó esetén -->
   <!-- <mat-search-bar  [(ngModel)]="search" (keyup)='searchEvetn()'></mat-search-bar> -->
-  <button *ngIf="(user | async)" mat-button (click)="logout()">Logout</button>  
-  <button *ngIf="(user | async)"   [routerLink]="['/task']"  mat-button >Task</button>
-  <button *ngIf="(user | async)"   [routerLink]="['/guest']"  mat-button >Guest</button>
+  <button *ngIf="user | async" mat-button (click)="logout()">Logout</button>
+  <button *ngIf="user | async" [routerLink]="['/task']" mat-button>Task</button>
+  <button *ngIf="user | async" [routerLink]="['/guest']" mat-button>Guest</button>
   <!-- <button *ngIf="(user | async)"  [routerLink]="['/wedding']"  mat-button >Wedding</button> -->
 
   <!-- Anonim felhasználó esetén -->
-  <button *ngIf="!(user | async)" mat-button [routerLink]="['/login']" > Login </button>
+  <button *ngIf="!(user | async)" mat-button [routerLink]="['/login']">Login</button>
   <button *ngIf="!(user | async)" mat-button [routerLink]="['/registration']">Registration</button>
-
 </mat-toolbar>
 <router-outlet></router-outlet>
 <app-spinner></app-spinner>

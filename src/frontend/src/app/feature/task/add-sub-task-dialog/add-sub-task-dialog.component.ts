@@ -56,7 +56,6 @@ export class AddSubTaskDialogComponent implements OnInit {
       taskGroupId: +this.id 
     };
     this.loading = true;
-    console.log(this.newTaskDto)
     this.taskManagementSerice.addTask(this.newTaskDto).subscribe({
       next: () => {
         this.dialogRef.close();

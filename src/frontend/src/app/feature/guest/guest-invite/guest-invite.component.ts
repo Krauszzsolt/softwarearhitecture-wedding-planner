@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/service/auth.service';
 import { GuestDto, InviteDto, NewGuestDto } from 'src/app/shared/client';
 import { GuestManagementService } from '../service/gust-management.service';
 
@@ -13,7 +14,7 @@ import { GuestManagementService } from '../service/gust-management.service';
 export class GuestInviteComponent implements OnInit {
   public loading = false;
   public error = '';
-  constructor(public dialog: MatDialog, private router: Router, private formBuilder: FormBuilder, private guestManagerService: GuestManagementService) {}
+  constructor(public dialog: MatDialog, private guestManagerService: GuestManagementService, private authService: AuthService) {}
   public guestList = new FormArray([]);
   public guests: GuestDto[];
   public inviteDto: InviteDto;
@@ -24,6 +25,7 @@ export class GuestInviteComponent implements OnInit {
       this.guests = resp;
     });
     this.addGuest();
+    this.authService.setCurrentBethrothedSubject();
   }
 
   addGuest() {

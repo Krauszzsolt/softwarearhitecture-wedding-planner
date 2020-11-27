@@ -14,8 +14,12 @@ export class LayoutComponent implements OnInit {
   public user: Observable<ApplicationUserDto> = new Observable();
   public showFiller = false;
   public search = '';
+  public currentBethrothedSubject: [{ name: string; isActive: boolean }, { name: string; isActive: boolean }];
   ngOnInit() {
     this.user = this.authService.getUser();
+    this.authService.getBethrothed().subscribe((x) => {
+      this.currentBethrothedSubject = x;
+    });
   }
 
   public searchEvetn() {
@@ -24,5 +28,12 @@ export class LayoutComponent implements OnInit {
 
   public logout() {
     this.authService.logout();
+  }
+
+  public setBethrothed(i) {
+    this.currentBethrothedSubject[0].isActive = false;
+    this.currentBethrothedSubject[1].isActive = false;
+    this.currentBethrothedSubject[i].isActive = true;
+    localStorage.setItem('currentBethrothed', JSON.stringify(this.currentBethrothedSubject));
   }
 }
