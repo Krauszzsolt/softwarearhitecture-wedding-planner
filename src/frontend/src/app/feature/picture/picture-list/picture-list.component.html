@@ -1,3 +1,14 @@
-<p>
-  picture-list works!
-</p>
+<div *ngIf="pictures != null && pictures.length == 0" class="container">
+  <div class="row">
+    <h1>Még nincsenek képek!</h1>
+  </div>
+</div>
+<div *ngIf="pictures != null && pictures.length > 0" class="container">
+  <div class="row">
+    <h1>Képek</h1>
+  </div>
+  
+  <div class="row">
+    <img *ngFor="let picture of pictures" src="{{BASE_URL}}{{picture}}" />
+  </div>
+</div>
