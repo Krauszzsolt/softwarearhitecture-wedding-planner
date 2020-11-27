@@ -49,6 +49,7 @@ namespace Backend
 
             // configure DI for application services
             services.AddSingleton<IFileManager, FileManager>();
+            services.AddSingleton<IEmailSender, EmailSender>();
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IWeddingService, WeddingService>();
@@ -59,6 +60,8 @@ namespace Backend
 
             // configure strongly typed settings object
             services.Configure<JWTSettings>(Configuration.GetSection("JWTSettings"));
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.Configure<FrontendSettings>(Configuration.GetSection("FrontendSettings"));
 
             // register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
