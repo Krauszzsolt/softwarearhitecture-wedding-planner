@@ -22,6 +22,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
+        path: 'pictures',
+        loadChildren: () => import('./../feature/picture/picture.module').then((m) => m.PictureModule),
+        canActivate: [AuthGuard],
+      },
+      {
         path: 'wedding',
         loadChildren: () => import('./../feature/wedding/wedding.module').then((m) => m.WeddingModule),
         canActivate: [WeddingGuard],

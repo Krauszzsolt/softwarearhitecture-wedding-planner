@@ -12,6 +12,7 @@
   <!-- <mat-search-bar  [(ngModel)]="search" (keyup)='searchEvetn()'></mat-search-bar> -->
   <button *ngIf="(user | async)" [routerLink]="['/task']" mat-button>Feladatok</button>
   <button *ngIf="(user | async)" [routerLink]="['/guest']" mat-button>Vendégek</button>
+  <button *ngIf="(user | async)" [routerLink]="['/pictures']" mat-button>Képek</button>
   <button *ngIf="(user | async)" mat-button (click)="logout()">Kijelentkezés</button>
   <!-- <button *ngIf="(user | async)"  [routerLink]="['/wedding']"  mat-button >Wedding</button> -->
 
