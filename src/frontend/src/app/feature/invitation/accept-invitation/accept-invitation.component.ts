@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GuestService } from 'src/app/shared/client';
 
 @Component({
   selector: 'app-accept-invitation',
@@ -10,9 +11,21 @@ export class AcceptInvitationComponent implements OnInit {
 
   guestId = (this.route.snapshot.paramMap.get('guestId') as undefined) as number;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router, private guestService: GuestService) { }
 
   ngOnInit() {
+  }
+
+  accept() {
+    this.guestService.guestIdAcceptPost(this.guestId).subscribe(result => {
+      this.router.navigate(['invitation']);
+    });
+  }
+
+  decline () {
+    this.guestService.guestIdDeclinePost(this.guestId).subscribe(result => {
+      this.router.navigate(['invitation']);
+    });
   }
 
 }
