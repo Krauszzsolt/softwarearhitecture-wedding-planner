@@ -32,6 +32,11 @@ const routes: Routes = [
         canActivate: [WeddingGuard],
       },
       {
+        path: 'upload',
+        loadChildren: () => import('./../feature/picture-upload/picture-upload.module').then((m) => m.PictureUploadModule),
+        canActivate: [WeddingGuard],
+      },
+      {
         path: 'login',
         component: LoginComponent,
       },
