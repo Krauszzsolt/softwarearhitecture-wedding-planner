@@ -1,0 +1,34 @@
+@import '../../../app.component.scss';
+
+.container {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    @media screen and (max-width: 765px) {
+        margin-left: 1vw;
+        margin-right: 1vw;
+    }
+    margin-top: 13rem;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    .add-button {
+      background: $orange-2;
+      align-self: center;
+    }
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+button {
+    background-color: $orange;
+    font-size: 2rem;
+    padding: 1.5rem;
+    margin-left: 1rem;
+    width: 15rem;
+}

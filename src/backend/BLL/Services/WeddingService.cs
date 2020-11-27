@@ -1,9 +1,12 @@
 ﻿using BLL.DTOs;
+using BLL.DTOs.Settings;
 using DAL.Data;
 using DAL.Entities;
+using Ganss.XSS;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,11 +17,15 @@ namespace BLL.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly IFileManager _fileManager;
+        private readonly IEmailSender _emailSender;
+        private readonly FrontendSettings _frontendSettings;
 
-        public WeddingService(ApplicationDbContext context, IFileManager fileManager)
+        public WeddingService(ApplicationDbContext context, IFileManager fileManager, IEmailSender emailSender, IOptions<FrontendSettings> frontendSettings)
         {
             _context = context;
             _fileManager = fileManager;
+            _emailSender = emailSender;
+            _frontendSettings = frontendSettings.Value;
         }
 
         public async Task<WeddingDto> GetWedding(long id)
@@ -82,21 +89,32 @@ namespace BLL.Services
         public async System.Threading.Tasks.Task InviteGuests(long weddingId, InviteDto invite)
         {
             var _w = await _context.Weddings.Include(x => x.Guests).Where(w => w.Id == weddingId).FirstOrDefaultAsync();
+            var newGuests = new List<Guest>();
 
             foreach (var item in invite.Guests)
             {
-                _w.Guests.Add(new Guest()
+                var _g = new Guest()
                 {
                     Name = item.Name,
                     Email = item.Email,
                     AcceptedInvitation = false
-                });
+                };
+                _w.Guests.Add(_g);
+                
+                newGuests.Add(_g);
             }
 
             await _context.SaveChangesAsync();
-
+            
             // send emails
+            var sanitizer = new HtmlSanitizer();
+            var invitationText = sanitizer.Sanitize(invite.InvitationText);
 
+            foreach (var item in newGuests)
+            {
+                var invitation = $"<p>{invitationText}</p><a href=\"{_frontendSettings.BaseUrl}/{_frontendSettings.InvitationRoute}/{item.Id} \">Meghívó</a>";
+                await _emailSender.SendEmailAsync(item.Email, "Meghívó", invitation);
+            }
         }
 
         public async Task<ActionResult<string>> AddPicture(long weddingId, IFormFile picture)
