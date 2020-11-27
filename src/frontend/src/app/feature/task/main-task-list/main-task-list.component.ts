@@ -11,7 +11,7 @@ import { TaskManagementService } from '../service/task-management.service';
   styleUrls: ['./main-task-list.component.scss'],
 })
 export class MainTaskListComponent implements OnInit {
-  constructor(public dialog: MatDialog, private router: Router, private taskManagementSerice: TaskManagementService) {}
+  constructor(public dialog: MatDialog, private router: Router, private taskManagementSerice: TaskManagementService) { }
   public wedding: WeddingDto;
   ngOnInit() {
     this.taskManagementSerice.getTaskGroup().subscribe((x) => {
@@ -29,7 +29,9 @@ export class MainTaskListComponent implements OnInit {
     });
   }
 
-  mainTaskSelect(id) {
-    this.router.navigateByUrl(`task/${id}`);
+  mainTaskSelect(id: number) {
+    if (this.wedding.taskGroups.filter(t => t.id == id)[0].canBeCompleted) {
+      this.router.navigateByUrl(`task/${id}`);
+    }
   }
 }

@@ -2,17 +2,22 @@
   <div class="row">
     <h1>Esküvői feladatok</h1>
   </div>
-
   <div *ngIf="wedding" class="row">
-    <mat-card (click)="mainTaskSelect(taskGroup.id)" *ngFor="let taskGroup of wedding.taskGroups">     
+    <mat-card (click)="mainTaskSelect(taskGroup.id)" *ngFor="let taskGroup of wedding.taskGroups" 
+    [ngClass]="taskGroup.completed ? 'done' : (taskGroup.canBeCompleted ? '' : 'disabled')">
       <mat-card-title class="title">
         {{taskGroup.name}}
       </mat-card-title>
+      <mat-card-content class="content">
+        <div class="description">
+          {{ taskGroup.description }}
+        </div>
+      </mat-card-content>
     </mat-card>
   </div>
 </div>
 <div class="button-container">
-  <button (click)="openDialog()"  mat-fab color="warn">
+  <button (click)="openDialog()" mat-fab color="warn">
     <mat-icon>add</mat-icon>
   </button>
 </div>

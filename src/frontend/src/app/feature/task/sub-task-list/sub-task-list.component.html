@@ -3,23 +3,30 @@
     <h1>Alfeladatok</h1>
   </div>
   <div *ngIf="taskGroupDto" class="row">
-    <mat-card *ngFor="let subTask of taskGroupDto.tasks" (click)="openSubTaskDetailDialog(subTask.id)">
+    <mat-card *ngFor="let subTask of taskGroupDto.tasks" (click)="openSubTaskDetailDialog(subTask.id)" [ngClass]="subTask.completed ? 'done' : ''">
       <mat-card-title class="title"> {{ subTask.name }}</mat-card-title>
+      <mat-card-subtitle>{{ subTask.responsible }}</mat-card-subtitle>
       <mat-card-content class="content">
-        <div class="descreption">
+        <div class="description">
           {{ subTask.description }}
         </div>
         <div>
-          <section class="check-section">
-            <mat-checkbox class="example-margin" [(ngModel)]="subTask.completed" >Checked</mat-checkbox>
-          </section>
+          <!-- <section class="check-section">
+            <mat-checkbox class="example-margin" [(ngModel)]="subTask.completed" color="primary">Checked</mat-checkbox>
+          </section> -->
         </div>
       </mat-card-content>
     </mat-card>
   </div>
 </div>
-<div class="button-container">
+<div *ngIf="taskGroupDto?.canBeCompleted" class="button-container">
   <button (click)="openSubTaskDialog()" mat-fab color="warn">
     <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div class="back-button-container">
+  <button (click)="navigateBack()" mat-fab color="warn">
+    <mat-icon>arrow_back</mat-icon>
   </button>
 </div>

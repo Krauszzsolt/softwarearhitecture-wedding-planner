@@ -24,8 +24,8 @@
       <div fxLayout="row" fxLayoutAlign="center"></div>
       <button mat-flat-button>Hozzászólás</button>
       <div fxLayout="row" fxLayoutAlign="space-around">
-        <button *ngIf="!loading" [disabled]="loading" mat-flat-button (click)="delete()" color="primary">Törlés</button>
-        <button *ngIf="!loading" [disabled]="loading" mat-flat-button (click)="complete()" color="primary">Kész</button>
+        <button *ngIf="!loading" [disabled]="loading" mat-flat-button (click)="delete()" color="primary" type="button">Törlés</button>
+        <button *ngIf="!loading" [disabled]="loading" mat-flat-button (click)="complete()" color="primary" type="button">Kész</button>
       </div>
     </div>
   </form>
