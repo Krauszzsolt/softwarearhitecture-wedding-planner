@@ -30,10 +30,7 @@ export class LayoutComponent implements OnInit {
     this.authService.logout();
   }
 
-  public setBethrothed(i) {
-    this.currentBethrothedSubject[0].isActive = false;
-    this.currentBethrothedSubject[1].isActive = false;
-    this.currentBethrothedSubject[i].isActive = true;
-    localStorage.setItem('currentBethrothed', JSON.stringify(this.currentBethrothedSubject));
+  public setBethrothed(i: number) {
+    this.authService.setBethrothed(i);
   }
 }

@@ -19,9 +19,7 @@ export class AuthService {
     this.currentBethrothedSubject = new BehaviorSubject<[{ name: string; isActive: boolean }, { name: string; isActive: boolean }]>(
       JSON.parse(localStorage.getItem('currentBethrothed'))
     );
-    console.log(JSON.parse(localStorage.getItem('currentBethrothed')));
     if (!JSON.parse(localStorage.getItem('currentBethrothed'))) {
-      console.log('hehjehjehjehejj');
       this.currentBethrothedSubject.next([
         {
           name: '',
@@ -49,7 +47,7 @@ export class AuthService {
         this.currentBethrothedSubject.next([
           {
             name: x.bethrothedOne,
-            isActive: false,
+            isActive: true,
           },
           {
             name: x.bethrothedTwo,
@@ -60,6 +58,7 @@ export class AuthService {
       });
     }
   }
+
   public get currentBethrothedValue(): [{ name: string; isActive: boolean }, { name: string; isActive: boolean }] {
     return this.currentBethrothedSubject.value;
   }
@@ -68,6 +67,13 @@ export class AuthService {
     if (JSON.parse(localStorage.getItem('currentBethrothed'))) {
       this.currentBethrothedSubject.next(JSON.parse(localStorage.getItem('currentBethrothed')));
     }
+  }
+
+  public setBethrothed(i: number) {
+    this.currentBethrothedSubject.value[0].isActive = false;
+    this.currentBethrothedSubject.value[1].isActive = false;
+    this.currentBethrothedSubject.value[i].isActive = true;
+    localStorage.setItem('currentBethrothed', JSON.stringify(this.currentBethrothedSubject.value));
   }
 
   public getBethrothed(): Observable<[{ name: string; isActive: boolean }, { name: string; isActive: boolean }]> {
