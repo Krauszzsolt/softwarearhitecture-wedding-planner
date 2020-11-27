@@ -1,6 +1,6 @@
 <mat-toolbar>
   <span [routerLink]="['/task']">Esküvő szervező</span>
-  <span *ngIf="user | async" class="user-name">{{ (user | async).userName }}</span>
+  <!-- <span *ngIf="user | async" class="user-name">{{ (user | async).userName }}</span> -->
   <mat-button-toggle-group [value]="true" *ngIf="currentBethrothedSubject && currentBethrothedSubject[0].name != ''" appearance="legacy">
     <mat-button-toggle (click)="setBethrothed(0)" [value]="currentBethrothedSubject[0].isActive">{{ currentBethrothedSubject[0].name }}</mat-button-toggle>
     <mat-button-toggle (click)="setBethrothed(1)" [value]="currentBethrothedSubject[1].isActive">{{ currentBethrothedSubject[1].name }}</mat-button-toggle>
