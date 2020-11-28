@@ -1,28 +1,27 @@
 <div class="container">
   <mat-card class="login-card">
-    <mat-card-title class="title">
-    </mat-card-title>
+    <mat-card-title class="title"> </mat-card-title>
     <mat-card-subtitle class="title">
-      <h1>Registration</h1>
+      <h1>Regisztráció</h1>
     </mat-card-subtitle>
     <mat-card-content class="content">
       <form class="form">
-        <mat-form-field >
-          <mat-label>Username</mat-label>
-          <input matInput placeholder="Username" name="username" [(ngModel)]="registerDto.username" />
+        <mat-form-field>
+          <mat-label>Felhasználónév</mat-label>
+          <input matInput placeholder="Felhasználónév" name="username" [(ngModel)]="registerDto.username" />
         </mat-form-field>
-        <mat-form-field >
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Password" type="password"  name="password" [(ngModel)]="registerDto.password" />
+        <mat-form-field>
+          <mat-label>Jelszó</mat-label>
+          <input matInput placeholder="Jelszó" type="password" name="password" [(ngModel)]="registerDto.password" />
         </mat-form-field>
-        <mat-form-field >
-          <mat-label>Confirm password</mat-label>
-          <input matInput placeholder="Password" type="password"  name="confirmPassword" [(ngModel)]="registerDto.confirmPassword" />
+        <mat-form-field>
+          <mat-label>Jelszó mégegyszer</mat-label>
+          <input matInput placeholder="Jelszó mégegyszer" type="password" name="confirmPassword" [(ngModel)]="registerDto.confirmPassword" />
         </mat-form-field>
         <mat-error *ngIf="errorMessage">
-          Something wrong, please check the form.
+          {{ errorMessage }}
         </mat-error>
-        <mat-card-actions><button mat-button type="button" class="login-button" (click)="registration()">Registration</button></mat-card-actions>
+        <mat-card-actions><button mat-button type="button" class="login-button" (click)="registration()">Regisztráció</button></mat-card-actions>
       </form>
     </mat-card-content>
   </mat-card>

@@ -17,8 +17,8 @@
   <!-- <button *ngIf="(user | async)"  [routerLink]="['/wedding']"  mat-button >Wedding</button> -->
 
   <!-- Anonim felhasználó esetén -->
-  <button *ngIf="!(user | async)" mat-button [routerLink]="['/login']"> Login </button>
-  <button *ngIf="!(user | async)" mat-button [routerLink]="['/registration']">Registration</button>
+  <button *ngIf="!(user | async)" mat-button [routerLink]="['/login']"> Bejelentkezés </button>
+  <button *ngIf="!(user | async)" mat-button [routerLink]="['/registration']">Regisztráció</button>
 </mat-toolbar>
 <router-outlet></router-outlet>
 <app-spinner></app-spinner>
