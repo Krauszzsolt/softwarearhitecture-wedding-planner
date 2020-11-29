@@ -55,7 +55,6 @@ namespace Backend
             services.AddScoped<IWeddingService, WeddingService>();
             services.AddScoped<ITaskGroupService, TaskGroupService>();
             services.AddScoped<ITaskService, TaskService>();
-            services.AddScoped<IPictureService, PictureService>();
             services.AddScoped<IGuestService, GuestService>();
 
             // configure strongly typed settings object
