@@ -112,7 +112,7 @@ namespace BLL.Services
 
             foreach (var item in newGuests)
             {
-                var invitation = $"<p>{invitationText}</p><a href=\"{_frontendSettings.BaseUrl}/{_frontendSettings.InvitationRoute}/{item.Id} \">Meghívó</a>";
+                var invitation = $"<p>{invitationText}</p><a href=\"{_frontendSettings.BaseUrl}/{_frontendSettings.InvitationRoute}/{item.Id} \">Meghívó</a><br/><br/><a href=\"{_frontendSettings.BaseUrl}/{_frontendSettings.PictureUploadRoute}/{_w.Id} \">Képek feltöltése</a>";
                 await _emailSender.SendEmailAsync(item.Email, "Meghívó", invitation);
             }
         }
